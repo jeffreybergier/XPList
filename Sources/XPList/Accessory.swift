@@ -22,7 +22,7 @@
 import SwiftUI
 
 extension XPL {
-    public struct SelectionCircle: View {
+    public struct Accessory: View {
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_LightConfiguration) private var lightConfig

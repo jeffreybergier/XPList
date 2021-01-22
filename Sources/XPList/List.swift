@@ -37,17 +37,14 @@ extension XPL {
                             XPL.RowBackground()
                             VStack {
                                 HStack {
-                                    XPL.SelectionCircle()
+                                    XPL.Accessory()
                                     self.content(item)
                                 }
                                 XPL.RowSeparator()
                             }
                         }
                         .environment(\.XPL_isSelected, self.selection.contains(item))
-                        .onTapGesture {
-                            guard self.selection.remove(item) == nil else { return }
-                            self.selection.insert(item)
-                        }
+                        .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
                     }
                 }
             }
