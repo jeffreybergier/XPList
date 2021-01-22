@@ -27,11 +27,18 @@ extension XPL {
     public struct SelectedKey: EnvironmentKey {
         public static let defaultValue: Bool = false
     }
+    public struct EditModeKey: EnvironmentKey {
+        public static let defaultValue: Bool = false
+    }
 }
 
 extension EnvironmentValues {
     public var XPL_isSelected: Bool {
         get { self[XPL.SelectedKey.self] }
         set { self[XPL.SelectedKey.self] = newValue }
+    }
+    public var XPL_isEditMode: Bool {
+        get { self[XPL.EditModeKey.self] }
+        set { self[XPL.EditModeKey.self] = newValue }
     }
 }

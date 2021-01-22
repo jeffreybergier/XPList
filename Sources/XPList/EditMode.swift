@@ -22,16 +22,20 @@
 import SwiftUI
 
 extension XPL {
-    public struct SelectionCircle: View {
-        @Environment(\.XPL_isSelected) private var isSelected
-        @Environment(\.XPL_isEditMode) private var isEditMode
-        public var body: Image? {
-            guard self.isEditMode else { return nil }
-            if self.isSelected {
-                return Image(systemName: "circle.fill")
-            } else {
-                return Image(systemName: "circle")
-            }
+    public struct EditMode: ViewModifier {
+        
+        #if os(iOS)
+        @Environment(\.editMode) private var editMode
+        #endif
+        
+        public func body(content: Content) -> some View {
+            #if os(macOS)
+            return content
+                .environment(\.XPL_isEditMode, false)
+            #else
+            return content
+                .environment(\.XPL_isEditMode, (self.editMode?.wrappedValue.isEditing ?? false))
+            #endif
         }
     }
 }

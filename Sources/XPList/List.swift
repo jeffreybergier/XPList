@@ -28,22 +28,19 @@ extension XPL {
         private let content: (Data.Element) -> RowContent
         
         @Binding private var selection: Set<Data.Element>
-        @Environment(\.editMode) private var editMode
-        
+
         public var body: some View {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(self.data) { item in
                         ZStack {
-                            RowBackground()
+                            XPL.RowBackground()
                             VStack {
                                 HStack {
-                                    if self.editMode?.wrappedValue.isEditing == true {
-                                        SelectionCircle()
-                                    }
+                                    XPL.SelectionCircle()
                                     self.content(item)
                                 }
-                                RowSeparator()
+                                XPL.RowSeparator()
                             }
                         }
                         .environment(\.XPL_isSelected, self.selection.contains(item))
@@ -54,6 +51,7 @@ extension XPL {
                     }
                 }
             }
+            .modifier(XPL.EditMode())
         }
         
         init(_ data: Data,
@@ -80,6 +78,25 @@ struct List_Preview_1: PreviewProvider {
                 Image(systemName: "dot.arrowtriangles.up.right.down.left.circle")
             }
         }
+        .previewLayout(.sizeThatFits)
+        .frame(width: 320, height: 200)
+    }
+}
+
+struct List_Preview_2: PreviewProvider {
+    static let data = XPL.Collection()
+    @State static var selection: Set<XPL.Element> = [data[2], data[4]]
+    @State static var editMode = EditMode.active
+    static var previews: some View {
+        XPL.List(data, selection: $selection) { item in
+            HStack {
+                Text("Item: ")
+                Text("\(item.id)")
+                Spacer()
+                Image(systemName: "dot.arrowtriangles.up.right.down.left.circle")
+            }
+        }
+        .environment(\.editMode, $editMode)
         .previewLayout(.sizeThatFits)
         .frame(width: 320, height: 200)
     }
