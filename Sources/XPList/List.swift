@@ -24,8 +24,11 @@ import SwiftUI
 extension XPL {
     public struct List<Data: RandomAccessCollection, RowContent: View>: View where Data.Element: Identifiable & Hashable {
         
+        public typealias OpenAction = (Data.Element) -> Void
+        
         private let data: Data
         private let content: (Data.Element) -> RowContent
+        private let openAction: OpenAction?
         
         @Binding private var selection: Set<Data.Element>
 
@@ -45,6 +48,7 @@ extension XPL {
                         }
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                         .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
+                        .modifier(XPL.OpenTrigger { self.openAction?(item) })
                     }
                 }
             }
@@ -53,10 +57,12 @@ extension XPL {
         
         init(_ data: Data,
              selection: Binding<Set<Data.Element>>,
+             openAction: OpenAction? = nil,
              @ViewBuilder content: @escaping (Data.Element) -> RowContent)
         {
             self.data = data
             self.content = content
+            self.openAction = openAction
             _selection = selection
         }
     }
