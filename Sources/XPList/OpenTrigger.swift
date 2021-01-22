@@ -42,7 +42,7 @@ extension XPL {
             guard self.isEditMode == false else { return AnyView(content) }
             return AnyView(
                 content
-                    .onTapGesture(count: tapCount, perform: self.action)
+                    .gesture(TapGesture(count: tapCount).onEnded(self.action))
             )
         }
     }

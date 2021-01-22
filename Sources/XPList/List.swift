@@ -56,8 +56,8 @@ extension XPL {
                             .padding(self.currentConfig.insets)
                         }
                         .environment(\.XPL_isSelected, self.selection.contains(item))
-                        .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
                         .modifier(XPL.OpenTrigger { self.openAction?(item) })
+                        .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
                     }
                 }
             }
