@@ -22,7 +22,9 @@
 import SwiftUI
 
 extension XPL {
-    public struct List<Data: RandomAccessCollection, RowContent: View>: View where Data.Element: Identifiable & Hashable {
+    public struct List<Data: RandomAccessCollection, RowContent: View>: View
+                       where Data.Element: Identifiable & Hashable
+    {
         
         public typealias OpenAction = (Data.Element) -> Void
         
@@ -39,7 +41,7 @@ extension XPL {
                         ZStack {
                             XPL.RowBackground()
                             VStack {
-                                HStack {
+                                HStack(alignment: .bottom) {
                                     XPL.Accessory()
                                     self.content(item)
                                 }
@@ -55,15 +57,15 @@ extension XPL {
             .modifier(XPL.EditMode())
         }
         
-        init(_ data: Data,
-             selection: Binding<Set<Data.Element>>,
-             openAction: OpenAction? = nil,
-             @ViewBuilder content: @escaping (Data.Element) -> RowContent)
+        public init(_ data: Data,
+                    selection: Binding<Set<Data.Element>>? = nil,
+                    openAction: OpenAction? = nil,
+                    @ViewBuilder content: @escaping (Data.Element) -> RowContent)
         {
             self.data = data
             self.content = content
             self.openAction = openAction
-            _selection = selection
+            _selection = selection ?? Binding.constant([])
         }
     }
 }
