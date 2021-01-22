@@ -24,11 +24,18 @@ import SwiftUI
 extension XPL {
     public struct RowBackground: View {
         @Environment(\.XPL_isSelected) private var isSelected
+        @Environment(\.XPL_LightConfiguration) private var lightConfig
+        @Environment(\.XPL_DarkConfiguration) private var darkConfig
+        @Environment(\.colorScheme) private var colorScheme
         public var body: Color {
             if self.isSelected {
-                return Color.blue
+                return self.colorScheme.isLight
+                    ? self.lightConfig.selectedRowBackground
+                    : self.darkConfig.selectedRowBackground
             } else {
-                return Color.red
+                return self.colorScheme.isLight
+                    ? self.lightConfig.deselectedRowBackground
+                    : self.darkConfig.deselectedRowBackground
             }
         }
     }
