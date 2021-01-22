@@ -31,10 +31,10 @@ extension XPL {
         public static let defaultValue: Bool = false
     }
     public struct DarkConfigurationKey: EnvironmentKey {
-        public static let defaultValue: XPL.Configuration = .darkDefault
+        public static let defaultValue: XPL.Configuration = .default
     }
     public struct LightConfigurationKey: EnvironmentKey {
-        public static let defaultValue: XPL.Configuration = .lightDefault
+        public static let defaultValue: XPL.Configuration = .default
     }
 }
 

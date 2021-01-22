@@ -45,22 +45,28 @@ extension XPL {
             self.deselectedAccessory = deselectedAccessory
         }
         
-        public static let lightDefault: Configuration = {
-            return .init(insets: .init(top: 4, leading: 8, bottom: 4, trailing: 8),
-                         separator: Color.gray,
-                         selectedRowBackground: Color.red,
-                         deselectedRowBackground: Color.white,
-                         selectedAccessory: Image(systemName: "largecircle.fill.circle"),
-                         deselectedAccessory: Image(systemName: "circle"))
-        }()
+        private static let defaultInsets = EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
+        private static let defaultSelectedAccessory = Image(systemName: "largecircle.fill.circle")
+        private static let defaultDeselectedAccessory = Image(systemName: "circle")
         
-        public static let darkDefault: Configuration = {
-            return .init(insets: .init(top: 4, leading: 8, bottom: 4, trailing: 8),
-                         separator: Color.gray,
-                         selectedRowBackground: Color.red,
-                         deselectedRowBackground: Color.black,
-                         selectedAccessory: Image(systemName: "largecircle.fill.circle"),
-                         deselectedAccessory: Image(systemName: "circle"))
+        #if os(macOS)
+        public static let `default`: Configuration = {
+            .init(insets: defaultInsets,
+                  separator: Color(NSColor.separatorColor),
+                  selectedRowBackground: Color(NSColor.selectedContentBackgroundColor),
+                  deselectedRowBackground: Color(NSColor.controlBackgroundColor),
+                  selectedAccessory: defaultSelectedAccessory,
+                  deselectedAccessory: defaultDeselectedAccessory)
         }()
+        #else
+        public static let `default`: Configuration = {
+            .init(insets: defaultInsets,
+                  separator: Color(UIColor.separator),
+                  selectedRowBackground: Color(UIColor.tertiarySystemFill),
+                  deselectedRowBackground: Color(UIColor.systemBackground),
+                  selectedAccessory: defaultSelectedAccessory,
+                  deselectedAccessory: defaultDeselectedAccessory)
+        }()
+        #endif
     }
 }
