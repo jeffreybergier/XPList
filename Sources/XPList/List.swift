@@ -83,6 +83,24 @@ struct List_Preview_1: PreviewProvider {
     }
 }
 
+#if os(macOS)
+struct List_Preview_2: PreviewProvider {
+    static let data = XPL.Collection()
+    @State static var selection: Set<XPL.Element> = [data[2], data[4]]
+    static var previews: some View {
+        XPL.List(data, selection: $selection) { item in
+            HStack {
+                Text("Item: ")
+                Text("\(item.id)")
+                Spacer()
+                Image(systemName: "dot.arrowtriangles.up.right.down.left.circle")
+            }
+        }
+        .previewLayout(.sizeThatFits)
+        .frame(width: 320, height: 200)
+    }
+}
+#else
 struct List_Preview_2: PreviewProvider {
     static let data = XPL.Collection()
     @State static var selection: Set<XPL.Element> = [data[2], data[4]]
@@ -101,4 +119,5 @@ struct List_Preview_2: PreviewProvider {
         .frame(width: 320, height: 200)
     }
 }
+#endif
 #endif
