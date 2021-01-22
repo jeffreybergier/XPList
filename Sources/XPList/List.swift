@@ -33,20 +33,27 @@ extension XPL {
         private let openAction: OpenAction?
         
         @Binding private var selection: Set<Data.Element>
+        @Environment(\.colorScheme) private var colorScheme
+        @Environment(\.XPL_LightConfiguration) private var lightConfig
+        @Environment(\.XPL_DarkConfiguration) private var darkConfig
+        private var currentConfig: XPL.Configuration {
+            return self.colorScheme.isLight
+                ? self.lightConfig
+                : self.darkConfig
+        }
 
         public var body: some View {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(self.data) { item in
-                        ZStack {
+                        ZStack(alignment: .bottom) {
                             XPL.RowBackground()
-                            VStack {
-                                HStack(alignment: .bottom) {
-                                    XPL.Accessory()
-                                    self.content(item)
-                                }
-                                XPL.RowSeparator()
+                            XPL.RowSeparator()
+                            HStack(spacing: self.currentConfig.insets.leading) {
+                                XPL.Accessory()
+                                self.content(item)
                             }
+                            .padding(self.currentConfig.insets)
                         }
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                         .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))

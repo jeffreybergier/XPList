@@ -23,18 +23,21 @@ import SwiftUI
 
 extension XPL {
     public struct Configuration {
+        public var insets: EdgeInsets
         public var separator: Color
         public var selectedRowBackground: Color
         public var deselectedRowBackground: Color
         public var selectedAccessory: Image
         public var deselectedAccessory: Image
         
-        public init(separator: Color,
+        public init(insets: EdgeInsets,
+                    separator: Color,
                     selectedRowBackground: Color,
                     deselectedRowBackground: Color,
                     selectedAccessory: Image,
                     deselectedAccessory: Image)
         {
+            self.insets = insets
             self.separator = separator
             self.selectedRowBackground = selectedRowBackground
             self.deselectedRowBackground = deselectedRowBackground
@@ -43,19 +46,21 @@ extension XPL {
         }
         
         public static let lightDefault: Configuration = {
-            return .init(separator: Color.gray,
+            return .init(insets: .init(top: 4, leading: 8, bottom: 4, trailing: 8),
+                         separator: Color.gray,
                          selectedRowBackground: Color.red,
                          deselectedRowBackground: Color.white,
-                         selectedAccessory: Image(systemName: "circle"),
-                         deselectedAccessory: Image(systemName: "largecircle.fill.circle"))
+                         selectedAccessory: Image(systemName: "largecircle.fill.circle"),
+                         deselectedAccessory: Image(systemName: "circle"))
         }()
         
         public static let darkDefault: Configuration = {
-            return .init(separator: Color.gray,
+            return .init(insets: .init(top: 4, leading: 8, bottom: 4, trailing: 8),
+                         separator: Color.gray,
                          selectedRowBackground: Color.red,
                          deselectedRowBackground: Color.black,
-                         selectedAccessory: Image(systemName: "circle"),
-                         deselectedAccessory: Image(systemName: "largecircle.fill.circle"))
+                         selectedAccessory: Image(systemName: "largecircle.fill.circle"),
+                         deselectedAccessory: Image(systemName: "circle"))
         }()
     }
 }
