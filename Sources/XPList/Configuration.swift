@@ -69,8 +69,8 @@ extension XPL {
                   separator: Color(NSColor.separatorColor),
                   selectedBackground: Color(NSColor.selectedContentBackgroundColor),
                   deselectedBackground: Color(NSColor.controlBackgroundColor),
-                  selectedForeground: Color(NSColor.selectedContentBackgroundColor),
-                  deselectedForeground: Color(NSColor.controlBackgroundColor),
+                  selectedForeground: Color(NSColor.alternateSelectedControlTextColor),
+                  deselectedForeground: Color(NSColor.controlTextColor),
                   selectedAccessory: defaultSelectedAccessory,
                   deselectedAccessory: defaultDeselectedAccessory)
         }()
@@ -81,8 +81,8 @@ extension XPL {
                   separator: Color(UIColor.separator),
                   selectedBackground: Color(UIColor.tertiarySystemFill),
                   deselectedBackground: Color(UIColor.systemBackground),
-                  selectedForeground: Color(UIColor.tertiarySystemFill),
-                  deselectedForeground: Color(UIColor.systemBackground),
+                  selectedForeground: Color(UIColor.label),
+                  deselectedForeground: Color(UIColor.label),
                   selectedAccessory: defaultSelectedAccessory,
                   deselectedAccessory: defaultDeselectedAccessory)
         }()

@@ -51,10 +51,11 @@ extension XPL {
                             }
                             .padding(self.config.cellPadding)
                         }
-                        .environment(\.XPL_isSelected, self.selection.contains(item))
+                        .modifier(ForegroundColor())
                         .modifier(XPL.OpenTrigger { self.openAction?(item) })
                         .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
                         .modifier(ContextMenu(self.selection.union(Set([item])), self.menuContent))
+                        .environment(\.XPL_isSelected, self.selection.contains(item))
                     }
                 }
             }
