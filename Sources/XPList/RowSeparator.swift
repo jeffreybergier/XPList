@@ -23,15 +23,12 @@ import SwiftUI
 
 extension XPL {
     public struct RowSeparator: View {
-        @Environment(\.XPL_LightConfiguration) private var lightConfig
-        @Environment(\.XPL_DarkConfiguration) private var darkConfig
-        @Environment(\.colorScheme) private var colorScheme
+        @Environment(\.XPL_Configuration) private var config
         public var body: some View {
             Rectangle()
-                .foregroundColor(self.colorScheme.isLight
-                                    ? self.lightConfig.separator
-                                    : self.darkConfig.separator)
-                .frame(maxHeight: 1)
+                .foregroundColor(self.config.separator)
+                .frame(maxHeight: 0.3)
+                .padding(self.config.separatorPadding)
         }
     }
 }

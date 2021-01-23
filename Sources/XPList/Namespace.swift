@@ -30,10 +30,7 @@ extension XPL {
     public struct EditModeKey: EnvironmentKey {
         public static let defaultValue: Bool = false
     }
-    public struct DarkConfigurationKey: EnvironmentKey {
-        public static let defaultValue: XPL.Configuration = .default
-    }
-    public struct LightConfigurationKey: EnvironmentKey {
+    public struct ConfigurationKey: EnvironmentKey {
         public static let defaultValue: XPL.Configuration = .default
     }
 }
@@ -47,13 +44,9 @@ extension EnvironmentValues {
         get { self[XPL.EditModeKey.self] }
         set { self[XPL.EditModeKey.self] = newValue }
     }
-    public var XPL_DarkConfiguration: XPL.Configuration {
-        get { self[XPL.DarkConfigurationKey.self] }
-        set { self[XPL.DarkConfigurationKey.self] = newValue }
-    }
-    public var XPL_LightConfiguration: XPL.Configuration {
-        get { self[XPL.LightConfigurationKey.self] }
-        set { self[XPL.LightConfigurationKey.self] = newValue }
+    public var XPL_Configuration: XPL.Configuration {
+        get { self[XPL.ConfigurationKey.self] }
+        set { self[XPL.ConfigurationKey.self] = newValue }
     }
 }
 

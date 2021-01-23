@@ -25,23 +25,16 @@ extension XPL {
     public struct RowBackground: View {
         
         @Environment(\.XPL_isSelected) private var isSelected
-        @Environment(\.XPL_LightConfiguration) private var lightConfig
-        @Environment(\.XPL_DarkConfiguration) private var darkConfig
-        @Environment(\.colorScheme) private var colorScheme
+        @Environment(\.XPL_Configuration) private var config
         @Environment(\.XPL_isEditMode) private var isEditMode
-        private var currentConfig: XPL.Configuration {
-            return self.colorScheme.isLight
-                ? self.lightConfig
-                : self.darkConfig
-        }
         
         public var body: Color {
             #if os(iOS)
-            guard self.isEditMode else { return self.currentConfig.deselectedRowBackground }
+            guard self.isEditMode else { return self.config.deselectedBackground }
             #endif
             return self.isSelected
-                ? self.currentConfig.selectedRowBackground
-                : self.currentConfig.deselectedRowBackground
+                ? self.config.selectedBackground
+                : self.config.deselectedBackground
         }
     }
 }

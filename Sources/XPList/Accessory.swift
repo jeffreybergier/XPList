@@ -25,20 +25,12 @@ extension XPL {
     public struct Accessory: View {
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isEditMode) private var isEditMode
-        @Environment(\.XPL_LightConfiguration) private var lightConfig
-        @Environment(\.XPL_DarkConfiguration) private var darkConfig
-        @Environment(\.colorScheme) private var colorScheme
+        @Environment(\.XPL_Configuration) private var config
         public var body: Image? {
             guard self.isEditMode else { return nil }
-            if self.isSelected {
-                return self.colorScheme.isLight
-                    ? self.lightConfig.selectedAccessory
-                    : self.darkConfig.selectedAccessory
-            } else {
-                return self.colorScheme.isLight
-                    ? self.lightConfig.deselectedAccessory
-                    : self.darkConfig.deselectedAccessory
-            }
+            return self.isSelected
+                ? self.config.selectedAccessory
+                : self.config.deselectedAccessory
         }
     }
 }

@@ -36,13 +36,7 @@ extension XPL {
         
         @Binding private var selection: Set<Data.Element>
         @Environment(\.colorScheme) private var colorScheme
-        @Environment(\.XPL_LightConfiguration) private var lightConfig
-        @Environment(\.XPL_DarkConfiguration) private var darkConfig
-        private var currentConfig: XPL.Configuration {
-            return self.colorScheme.isLight
-                ? self.lightConfig
-                : self.darkConfig
-        }
+        @Environment(\.XPL_Configuration) private var config
 
         public var body: some View {
             ScrollView {
@@ -51,11 +45,11 @@ extension XPL {
                         ZStack(alignment: .bottom) {
                             XPL.RowBackground()
                             XPL.RowSeparator()
-                            HStack(spacing: self.currentConfig.insets.leading) {
+                            HStack(spacing: self.config.cellPadding.leading) {
                                 XPL.Accessory()
                                 self.content(item)
                             }
-                            .padding(self.currentConfig.insets)
+                            .padding(self.config.cellPadding)
                         }
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                         .modifier(XPL.OpenTrigger { self.openAction?(item) })
@@ -135,15 +129,18 @@ struct Preview_NoMenu_NoOpen_NoSelection: PreviewProvider {
     }
 }
 
-struct Preview_Custom_Appearance_Light: PreviewProvider {
+struct Preview_Custom_Appearance: PreviewProvider {
     static let data = XPL.Collection()
     @State static var selection: Set<XPL.Element> = [data[2], data[4]]
-    static let light = XPL.Configuration(insets: .init(top: 0, leading: 0, bottom: 0, trailing: 0),
-                                         separator: Color.green,
-                                         selectedRowBackground: Color.blue,
-                                         deselectedRowBackground: Color.orange,
-                                         selectedAccessory: Image(systemName: "trash.slash.fill"),
-                                         deselectedAccessory: Image(systemName: "highlighter"))
+    static let config = XPL.Configuration(cellPadding: .init(top: 0, leading: 0, bottom: 0, trailing: 0),
+                                          separatorPadding: .init(top: 0, leading: 30, bottom: 0, trailing: 30),
+                                          separator: Color.green,
+                                          selectedBackground: Color.blue,
+                                          deselectedBackground: Color.orange,
+                                          selectedForeground: Color.white,
+                                          deselectedForeground: Color.black,
+                                          selectedAccessory: Image(systemName: "trash.slash.fill"),
+                                          deselectedAccessory: Image(systemName: "highlighter"))
     static var previews: some View {
         XPL.List(data, selection: self.$selection) { item in
             HStack {
@@ -153,31 +150,7 @@ struct Preview_Custom_Appearance_Light: PreviewProvider {
                 Image(systemName: "dot.arrowtriangles.up.right.down.left.circle")
             }
         }
-        .environment(\.XPL_LightConfiguration, self.light)
-        .previewLayout(.sizeThatFits)
-        .frame(width: 320, height: 200)
-    }
-}
-
-struct Preview_Custom_Appearance_Dark: PreviewProvider {
-    static let data = XPL.Collection()
-    @State static var selection: Set<XPL.Element> = [data[2], data[4]]
-    static let dark = XPL.Configuration(insets: .init(top: 0, leading: 0, bottom: 0, trailing: 0),
-                                         separator: Color.white,
-                                         selectedRowBackground: Color.red,
-                                         deselectedRowBackground: Color.black,
-                                         selectedAccessory: Image(systemName: "highlighter"),
-                                         deselectedAccessory: Image(systemName: "trash.slash.fill"))
-    static var previews: some View {
-        XPL.List(data, selection: self.$selection) { item in
-            HStack {
-                Text("Item: ")
-                Text("\(item.id)")
-                Spacer()
-                Image(systemName: "dot.arrowtriangles.up.right.down.left.circle")
-            }
-        }
-        .environment(\.XPL_DarkConfiguration, self.dark)
+        .environment(\.XPL_Configuration, self.config)
         .previewLayout(.sizeThatFits)
         .frame(width: 320, height: 200)
     }

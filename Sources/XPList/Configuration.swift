@@ -23,47 +23,66 @@ import SwiftUI
 
 extension XPL {
     public struct Configuration {
-        public var insets: EdgeInsets
+        public var cellPadding: EdgeInsets
+        public var separatorPadding: EdgeInsets
         public var separator: Color
-        public var selectedRowBackground: Color
-        public var deselectedRowBackground: Color
+        public var selectedBackground: Color
+        public var deselectedBackground: Color
+        public var selectedForeground: Color
+        public var deselectedForeground: Color
         public var selectedAccessory: Image
         public var deselectedAccessory: Image
         
-        public init(insets: EdgeInsets,
+        /// To fully customize use this initializer.
+        /// To partially customize start with `.default` and modify
+        /// Install in XPL.List by using `.environment(\.XPL_Configuration, myConfig)`
+        /// Dark and Light mode work automatically if using Dynamic Colors UI/NSColor
+        public init(cellPadding: EdgeInsets,
+                    separatorPadding: EdgeInsets,
                     separator: Color,
-                    selectedRowBackground: Color,
-                    deselectedRowBackground: Color,
+                    selectedBackground: Color,
+                    deselectedBackground: Color,
+                    selectedForeground: Color,
+                    deselectedForeground: Color,
                     selectedAccessory: Image,
                     deselectedAccessory: Image)
         {
-            self.insets = insets
+            self.cellPadding = cellPadding
+            self.separatorPadding = separatorPadding
             self.separator = separator
-            self.selectedRowBackground = selectedRowBackground
-            self.deselectedRowBackground = deselectedRowBackground
+            self.selectedBackground = selectedBackground
+            self.deselectedBackground = deselectedBackground
+            self.selectedForeground = selectedForeground
+            self.deselectedForeground = deselectedForeground
             self.selectedAccessory = selectedAccessory
             self.deselectedAccessory = deselectedAccessory
         }
         
-        private static let defaultInsets = EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
+        private static let defaultPadding = EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 8)
         private static let defaultSelectedAccessory = Image(systemName: "largecircle.fill.circle")
         private static let defaultDeselectedAccessory = Image(systemName: "circle")
         
         #if os(macOS)
         public static let `default`: Configuration = {
-            .init(insets: defaultInsets,
+            .init(cellPadding: defaultPadding,
+                  separatorPadding: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
                   separator: Color(NSColor.separatorColor),
-                  selectedRowBackground: Color(NSColor.selectedContentBackgroundColor),
-                  deselectedRowBackground: Color(NSColor.controlBackgroundColor),
+                  selectedBackground: Color(NSColor.selectedContentBackgroundColor),
+                  deselectedBackground: Color(NSColor.controlBackgroundColor),
+                  selectedForeground: Color(NSColor.selectedContentBackgroundColor),
+                  deselectedForeground: Color(NSColor.controlBackgroundColor),
                   selectedAccessory: defaultSelectedAccessory,
                   deselectedAccessory: defaultDeselectedAccessory)
         }()
         #else
         public static let `default`: Configuration = {
-            .init(insets: defaultInsets,
+            .init(cellPadding: defaultPadding,
+                  separatorPadding: EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0),
                   separator: Color(UIColor.separator),
-                  selectedRowBackground: Color(UIColor.tertiarySystemFill),
-                  deselectedRowBackground: Color(UIColor.systemBackground),
+                  selectedBackground: Color(UIColor.tertiarySystemFill),
+                  deselectedBackground: Color(UIColor.systemBackground),
+                  selectedForeground: Color(UIColor.tertiarySystemFill),
+                  deselectedForeground: Color(UIColor.systemBackground),
                   selectedAccessory: defaultSelectedAccessory,
                   deselectedAccessory: defaultDeselectedAccessory)
         }()
