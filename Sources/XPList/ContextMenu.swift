@@ -22,18 +22,17 @@
 import SwiftUI
 
 extension XPL {
-    public struct ContextMenu<Element: Hashable, Menu: View>: ViewModifier {
+    public struct ContextMenu<Passthrough, Menu: View>: ViewModifier {
         
-        public typealias Selection = Set<Element>
-        public typealias Builder = (Selection) -> Menu
+        public typealias Builder = (Passthrough) -> Menu
         
         private let builder: Builder?
-        private let selection: Selection
+        private let passthrough: Passthrough
         
-        public init(_ selection: Selection,
+        public init(_ passthrough: Passthrough,
                     _ builder: Builder?)
         {
-            self.selection = selection
+            self.passthrough = passthrough
             self.builder = builder
         }
         
@@ -41,7 +40,7 @@ extension XPL {
             guard let builder = self.builder else { return AnyView(content) }
             return AnyView(
                 content
-                    .contextMenu(menuItems: { builder(self.selection) })
+                    .contextMenu(menuItems: { builder(self.passthrough) })
             )
         }
     }

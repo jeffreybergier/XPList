@@ -38,8 +38,11 @@ struct ContentView: View {
     @State var selection = Set<XPL.Element>()
     var body: some View {
         XPL.List(self.data, selection: self.$selection)
-        { boom in
-            print(boom)
+        { open in
+            print("Open: \(open)")
+        } menu: { selection in
+            Text(String(describing: selection))
+            Text("Menu 2")
         } content: { boom in
             HStack{
                 Text("\(boom.id)").font(.headline).frame(minHeight: 44)

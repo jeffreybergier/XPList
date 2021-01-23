@@ -22,15 +22,17 @@
 import SwiftUI
 
 extension XPL {
-    public struct List<Data: RandomAccessCollection, RowContent: View>: View
+    public struct List<Data: RandomAccessCollection, Row: View, Menu: View>: View
                        where Data.Element: Identifiable & Hashable
     {
-        
+     
+        public typealias ContextMenu = XPL.ContextMenu<Set<Data.Element>, Menu>
         public typealias OpenAction = (Data.Element) -> Void
         
         private let data: Data
-        private let content: (Data.Element) -> RowContent
+        private let content: (Data.Element) -> Row
         private let openAction: OpenAction?
+        private let menuContent: ContextMenu.Builder?
         
         @Binding private var selection: Set<Data.Element>
         @Environment(\.colorScheme) private var colorScheme
@@ -58,6 +60,7 @@ extension XPL {
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                         .modifier(XPL.OpenTrigger { self.openAction?(item) })
                         .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
+                        .modifier(ContextMenu(self.selection.union(Set([item])), self.menuContent))
                     }
                 }
             }
@@ -67,11 +70,26 @@ extension XPL {
         public init(_ data: Data,
                     selection: Binding<Set<Data.Element>>? = nil,
                     openAction: OpenAction? = nil,
-                    @ViewBuilder content: @escaping (Data.Element) -> RowContent)
+                    @ViewBuilder menu: @escaping ContextMenu.Builder,
+                    @ViewBuilder content: @escaping (Data.Element) -> Row)
         {
             self.data = data
             self.content = content
             self.openAction = openAction
+            self.menuContent = menu
+            _selection = selection ?? Binding.constant([])
+        }
+        
+        public init(_ data: Data,
+                    selection: Binding<Set<Data.Element>>? = nil,
+                    openAction: OpenAction? = nil,
+                    @ViewBuilder content: @escaping (Data.Element) -> Row)
+                    where Menu == Never
+        {
+            self.data = data
+            self.content = content
+            self.openAction = openAction
+            self.menuContent = nil
             _selection = selection ?? Binding.constant([])
         }
     }
