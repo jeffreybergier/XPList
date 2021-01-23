@@ -140,6 +140,7 @@ struct Preview_Custom_Appearance: PreviewProvider {
                                           deselectedBackground: Color.orange,
                                           selectedForeground: Color.white,
                                           deselectedForeground: Color.black,
+                                          accessoryAccent: Color.pink,
                                           selectedAccessory: Image(systemName: "trash.slash.fill"),
                                           deselectedAccessory: Image(systemName: "highlighter"))
     static var previews: some View {

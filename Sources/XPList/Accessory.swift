@@ -26,11 +26,15 @@ extension XPL {
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_Configuration) private var config
-        public var body: Image? {
+        public var body: AnyView? {
             guard self.isEditMode else { return nil }
-            return self.isSelected
+            let image = self.isSelected
                 ? self.config.selectedAccessory
                 : self.config.deselectedAccessory
+            return AnyView(
+                image
+                    .foregroundColor(self.config.accessoryAccent)
+            )
         }
     }
 }

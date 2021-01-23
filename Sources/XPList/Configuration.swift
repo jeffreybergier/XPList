@@ -30,7 +30,11 @@ extension XPL {
         public var deselectedBackground: Color
         public var selectedForeground: Color
         public var deselectedForeground: Color
+        /// Accessory not shown on macOS
+        public var accessoryAccent: Color
+        /// Accessory not shown on macOS
         public var selectedAccessory: Image
+        /// Accessory not shown on macOS
         public var deselectedAccessory: Image
         
         /// To fully customize use this initializer.
@@ -44,6 +48,7 @@ extension XPL {
                     deselectedBackground: Color,
                     selectedForeground: Color,
                     deselectedForeground: Color,
+                    accessoryAccent: Color,
                     selectedAccessory: Image,
                     deselectedAccessory: Image)
         {
@@ -54,6 +59,7 @@ extension XPL {
             self.deselectedBackground = deselectedBackground
             self.selectedForeground = selectedForeground
             self.deselectedForeground = deselectedForeground
+            self.accessoryAccent = accessoryAccent
             self.selectedAccessory = selectedAccessory
             self.deselectedAccessory = deselectedAccessory
         }
@@ -71,6 +77,7 @@ extension XPL {
                   deselectedBackground: Color(NSColor.controlBackgroundColor),
                   selectedForeground: Color(NSColor.alternateSelectedControlTextColor),
                   deselectedForeground: Color(NSColor.controlTextColor),
+                  accessoryAccent: Color(NSColor.controlAccentColor),
                   selectedAccessory: defaultSelectedAccessory,
                   deselectedAccessory: defaultDeselectedAccessory)
         }()
@@ -83,6 +90,7 @@ extension XPL {
                   deselectedBackground: Color(UIColor.systemBackground),
                   selectedForeground: Color(UIColor.label),
                   deselectedForeground: Color(UIColor.label),
+                  accessoryAccent: Color.accentColor,
                   selectedAccessory: defaultSelectedAccessory,
                   deselectedAccessory: defaultDeselectedAccessory)
         }()
