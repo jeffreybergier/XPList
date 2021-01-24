@@ -26,15 +26,16 @@ extension XPL {
                        where Data.Element: Identifiable & Hashable
     {
      
-        public typealias ContextMenu = XPL.ContextMenu<Set<Data.Element>, Menu>
-        public typealias OpenAction = (Data.Element) -> Void
+        public typealias Selection = Set<Data.Element>
+        public typealias ContextMenu = XPL.ContextMenu<Selection, Menu>
+        public typealias OpenAction = (Selection) -> Void
         
         private let data: Data
         private let content: (Data.Element) -> Row
         private let openAction: OpenAction?
         private let menuContent: ContextMenu.Builder?
         
-        @Binding private var selection: Set<Data.Element>
+        @Binding private var selection: Selection
         @Environment(\.colorScheme) private var colorScheme
         @Environment(\.XPL_Configuration) private var config
 
@@ -52,7 +53,7 @@ extension XPL {
                             .padding(self.config.cellPadding)
                         }
                         .modifier(ForegroundColor())
-                        .modifier(XPL.OpenTrigger { self.openAction?(item) })
+                        .modifier(XPL.OpenTrigger { self.openAction?(self.selection.union(Set([item]))) })
                         .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
                         .modifier(ContextMenu(self.selection.union(Set([item])), self.menuContent))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
@@ -63,7 +64,7 @@ extension XPL {
         }
         
         public init(_ data: Data,
-                    selection: Binding<Set<Data.Element>>? = nil,
+                    selection: Binding<Selection>? = nil,
                     openAction: OpenAction? = nil,
                     @ViewBuilder menu: @escaping ContextMenu.Builder,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
@@ -76,7 +77,7 @@ extension XPL {
         }
         
         public init(_ data: Data,
-                    selection: Binding<Set<Data.Element>>? = nil,
+                    selection: Binding<Selection>? = nil,
                     openAction: OpenAction? = nil,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
                     where Menu == Never
