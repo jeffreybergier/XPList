@@ -27,8 +27,7 @@ extension XPL {
         public typealias Action = () -> Void
                 
         private let action: Action
-        @State private var temporaryIsSelected = false
-        @Environment(\.XPL_isSelected) private var existingIsSelected
+        @State private var isHighlighted = false
         @Environment(\.XPL_isEditMode) private var isEditMode
         
         public init(action: @escaping Action) {
@@ -44,16 +43,16 @@ extension XPL {
             guard self.isEditMode == false else { return AnyView(content) }
             return AnyView(
                 content
-                    .environment(\.XPL_isSelected, self.existingIsSelected || self.temporaryIsSelected)
+                    .environment(\.XPL_isHighlighted, self.isHighlighted)
                     .gesture(TapGesture(count: tapCount).onEnded(self._action))
             )
         }
         
         private func _action() {
             self.action()
-            self.temporaryIsSelected = true
+            self.isHighlighted = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                self.temporaryIsSelected = false
+                self.isHighlighted = false
             }
         }
     }

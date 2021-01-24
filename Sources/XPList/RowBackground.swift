@@ -25,17 +25,23 @@ extension XPL {
     public struct RowBackground: View {
         
         @Environment(\.XPL_isSelected) private var isSelected
-        @Environment(\.XPL_Configuration) private var config
+        @Environment(\.XPL_isHighlighted) private var isHighlighted
         @Environment(\.XPL_isEditMode) private var isEditMode
+        @Environment(\.XPL_Configuration) private var config
         
         public var body: some View {
             let `default` = self.config.deselectedBackground.animation(.linear(duration: 0.1))
+            let modified = self.config.selectedBackground.animation(nil)
+            if self.isHighlighted {
+                return modified
+            }
             #if os(iOS)
             guard self.isEditMode else { return `default` }
             #endif
-            return self.isSelected
-                ? self.config.selectedBackground.animation(nil)
-                : `default`
+            if self.isSelected {
+                return modified
+            }
+            return `default`
         }
     }
 }
