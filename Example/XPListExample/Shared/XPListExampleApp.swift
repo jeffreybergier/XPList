@@ -55,13 +55,14 @@ struct ContentView: View {
     let title: String
     @StateObject var data = XPL.Collection()
     @State var selection = Set<XPL.Element>()
+    @State var openAlert: Set<XPL.Element>?
     var body: some View {
         XPL.List(self.data, selection: self.$selection)
         { open in
-            print("Open: \(open)")
+            self.openAlert = open
         } menu: { selection in
-            Text(String(describing: selection))
-            Text("Menu 2")
+            Text("\(selection.count) item(s) context menu:")
+            Text(selection.reduce("", { $0 + "\n" + String(describing: $1) }))
         } content: { boom in
             HStack{
                 Text("\(boom.id)").font(.headline).frame(minHeight: 44)
@@ -88,7 +89,19 @@ struct ContentView: View {
                 }
             }
         }
+        .alert(item: self.$openAlert) { selection in
+            Alert(title: Text("\(selection.count) Item(s)"),
+                  message: Text(selection.reduce("", { $0 + "\n" + String(describing: $1) })),
+                  dismissButton: .cancel())
+        }
         .navigationTitle(self.title)
+    }
+}
+
+// Crappy example. Do not do this in real code
+extension Set: Identifiable where Element: Identifiable {
+    public var id: Element.ID {
+        return self.first!.id
     }
 }
 
