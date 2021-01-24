@@ -54,7 +54,9 @@ extension XPL {
                         }
                         .modifier(ForegroundColor())
                         .modifier(XPL.OpenTrigger { self.open(item) })
-                        .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
+                        .modifier(XPL.SelectionTrigger.Shift(item: item, selection: self.$selection))
+                        .modifier(XPL.SelectionTrigger.Command(item: item, selection: self.$selection))
+                        .modifier(XPL.SelectionTrigger.NoModifier(item: item, selection: self.$selection))
                         .modifier(ContextMenu(self.selection.union(Set([item])), self.menuContent))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                     }

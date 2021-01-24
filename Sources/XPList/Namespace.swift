@@ -21,7 +21,9 @@
 
 import SwiftUI
 
-public enum XPL { }
+public enum XPL {
+    public enum SelectionTrigger { }
+}
 
 extension XPL {
     public struct SelectedKey: EnvironmentKey {

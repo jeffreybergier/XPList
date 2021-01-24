@@ -27,12 +27,16 @@
 		73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDA25BBE6CF00068F69 /* EditMode.swift */; };
 		73C54EEE25BBE6CF00068F69 /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */; };
 		73C54EEF25BBE6CF00068F69 /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */; };
-		73C54EF025BBE6CF00068F69 /* SelectionTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDC25BBE6CF00068F69 /* SelectionTrigger.swift */; };
-		73C54EF125BBE6CF00068F69 /* SelectionTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDC25BBE6CF00068F69 /* SelectionTrigger.swift */; };
+		73C54EF025BBE6CF00068F69 /* NoModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDC25BBE6CF00068F69 /* NoModifier.swift */; };
+		73C54EF125BBE6CF00068F69 /* NoModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDC25BBE6CF00068F69 /* NoModifier.swift */; };
 		73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDD25BBE6CF00068F69 /* Configuration.swift */; };
 		73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDD25BBE6CF00068F69 /* Configuration.swift */; };
 		73E4ED5225BC26B600409486 /* ForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4ED5125BC26B600409486 /* ForegroundColor.swift */; };
 		73E4ED5325BC26B600409486 /* ForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4ED5125BC26B600409486 /* ForegroundColor.swift */; };
+		73F8B36425BD5F28001A6A09 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36325BD5F28001A6A09 /* Command.swift */; };
+		73F8B36525BD5F28001A6A09 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36325BD5F28001A6A09 /* Command.swift */; };
+		73F8B36925BD5F4E001A6A09 /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36825BD5F4E001A6A09 /* Shift.swift */; };
+		73F8B36A25BD5F4E001A6A09 /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36825BD5F4E001A6A09 /* Shift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +55,11 @@
 		73C54ED925BBE6CF00068F69 /* Accessory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		73C54EDA25BBE6CF00068F69 /* EditMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMode.swift; sourceTree = "<group>"; };
 		73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTrigger.swift; sourceTree = "<group>"; };
-		73C54EDC25BBE6CF00068F69 /* SelectionTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionTrigger.swift; sourceTree = "<group>"; };
+		73C54EDC25BBE6CF00068F69 /* NoModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoModifier.swift; sourceTree = "<group>"; };
 		73C54EDD25BBE6CF00068F69 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		73E4ED5125BC26B600409486 /* ForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundColor.swift; sourceTree = "<group>"; };
+		73F8B36325BD5F28001A6A09 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		73F8B36825BD5F4E001A6A09 /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +138,21 @@
 				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
 				73C54EDA25BBE6CF00068F69 /* EditMode.swift */,
 				73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */,
-				73C54EDC25BBE6CF00068F69 /* SelectionTrigger.swift */,
 				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
+				73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */,
 			);
 			name = XPList;
 			path = ../../../Sources/XPList;
+			sourceTree = "<group>";
+		};
+		73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */ = {
+			isa = PBXGroup;
+			children = (
+				73C54EDC25BBE6CF00068F69 /* NoModifier.swift */,
+				73F8B36325BD5F28001A6A09 /* Command.swift */,
+				73F8B36825BD5F4E001A6A09 /* Shift.swift */,
+			);
+			path = SelectionTrigger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,10 +250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73C54EF025BBE6CF00068F69 /* SelectionTrigger.swift in Sources */,
+				73C54EF025BBE6CF00068F69 /* NoModifier.swift in Sources */,
 				73E4ED5225BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */,
 				73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */,
+				73F8B36925BD5F4E001A6A09 /* Shift.swift in Sources */,
 				73C54EE825BBE6CF00068F69 /* List.swift in Sources */,
 				73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE025BBE6CF00068F69 /* ContextMenu.swift in Sources */,
@@ -245,6 +262,7 @@
 				73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */,
 				73C54EEA25BBE6CF00068F69 /* Accessory.swift in Sources */,
+				73F8B36425BD5F28001A6A09 /* Command.swift in Sources */,
 				73C54EEE25BBE6CF00068F69 /* OpenTrigger.swift in Sources */,
 				73C54EE225BBE6CF00068F69 /* Collection.swift in Sources */,
 			);
@@ -254,10 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73C54EF125BBE6CF00068F69 /* SelectionTrigger.swift in Sources */,
+				73C54EF125BBE6CF00068F69 /* NoModifier.swift in Sources */,
 				73E4ED5325BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDF25BBE6CF00068F69 /* RowBackground.swift in Sources */,
 				73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */,
+				73F8B36A25BD5F4E001A6A09 /* Shift.swift in Sources */,
 				73C54EE925BBE6CF00068F69 /* List.swift in Sources */,
 				73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE125BBE6CF00068F69 /* ContextMenu.swift in Sources */,
@@ -265,6 +284,7 @@
 				73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */,
 				73C54EEB25BBE6CF00068F69 /* Accessory.swift in Sources */,
+				73F8B36525BD5F28001A6A09 /* Command.swift in Sources */,
 				73C54EEF25BBE6CF00068F69 /* OpenTrigger.swift in Sources */,
 				73C54EE325BBE6CF00068F69 /* Collection.swift in Sources */,
 			);

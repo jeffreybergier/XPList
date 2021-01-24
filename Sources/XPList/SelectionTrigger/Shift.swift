@@ -21,21 +21,31 @@
 
 import SwiftUI
 
-extension XPL {
-    public struct RowBackground: View {
+extension XPL.SelectionTrigger {
+    public struct Shift<Element: Hashable>: ViewModifier {
         
-        @Environment(\.XPL_isSelected) private var isSelected
-        @Environment(\.XPL_Configuration) private var config
+        private let item: Element
+        @Binding private var selection: Set<Element>
         @Environment(\.XPL_isEditMode) private var isEditMode
+                
+        public init(item: Element, selection: Binding<Set<Element>>) {
+            _selection = selection
+            self.item = item
+        }
         
-        public var body: some View {
-            let `default` = self.config.deselectedBackground.animation(.linear(duration: 0.1))
-            #if os(iOS)
-            guard self.isEditMode else { return `default` }
+        public func body(content: Content) -> some View {
+            #if os(macOS)
+            return content
+                .gesture(TapGesture(count: 1)
+                            .modifiers(.shift)
+                            .onEnded(self.select))
+            #else
+            return content
             #endif
-            return self.isSelected
-                ? self.config.selectedBackground.animation(nil)
-                : `default`
+        }
+        
+        private func select() {
+            NSLog("Multiselect with shift key is not implemented yet.")
         }
     }
 }
