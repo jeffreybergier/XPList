@@ -53,7 +53,7 @@ extension XPL {
                             .padding(self.config.cellPadding)
                         }
                         .modifier(ForegroundColor())
-                        .modifier(XPL.OpenTrigger { self.openAction?(self.selection.union(Set([item]))) })
+                        .modifier(XPL.OpenTrigger { self.open(item) })
                         .modifier(XPL.SelectionTrigger(item: item, selection: self.$selection))
                         .modifier(ContextMenu(self.selection.union(Set([item])), self.menuContent))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
@@ -87,6 +87,25 @@ extension XPL {
             self.openAction = openAction
             self.menuContent = nil
             _selection = selection ?? Binding.constant([])
+        }
+        
+        /// Complex logic applies to macOS.
+        /// If they double click on a row that is selected (and other rows are selected)
+        /// then it should open all the selected rows.
+        /// If they double click on a row that is not selected but other rows are selected
+        /// then the selection is cleared and only the double clicked item is opened
+        private func open(_ item: Data.Element) {
+            guard let openAction = self.openAction else { return }
+            #if os(macOS)
+            if self.selection.contains(item) {
+                openAction(self.selection)
+            } else {
+                self.selection.removeAll()
+                openAction([item])
+            }
+            #else
+            openAction([item])
+            #endif
         }
     }
 }
