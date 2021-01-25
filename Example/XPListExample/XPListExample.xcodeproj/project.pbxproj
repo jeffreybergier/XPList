@@ -40,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		737A00CE25BF03410049B763 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
 		73C54EA625BBE5A100068F69 /* XPListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C54EA925BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		73C54E9E25BBE5A100068F69 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				737A00CE25BF03410049B763 /* README.md */,
 				73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */,
 				73C54ED225BBE6CF00068F69 /* XPList */,
 			);
