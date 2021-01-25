@@ -62,6 +62,7 @@ extension XPL {
                     }
                 }
             }
+            .onTapGesture { self.selection = [] }
             .modifier(XPL.EditMode())
         }
         
