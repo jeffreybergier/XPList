@@ -62,6 +62,8 @@ extension XPL {
                     }
                 }
             }
+            // TODO: Find a way to fix the jiggling when used with navigation view
+            // .background(self.config.deselectedBackground)
             .onTapGesture { self.selection = [] }
             .modifier(XPL.EditMode())
         }
