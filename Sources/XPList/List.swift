@@ -57,7 +57,7 @@ extension XPL {
                         .modifier(XPL.SelectionTrigger.Shift(item: item, selection: self.$selection))
                         .modifier(XPL.SelectionTrigger.Command(item: item, selection: self.$selection))
                         .modifier(XPL.SelectionTrigger.NoModifier(item: item, selection: self.$selection))
-                        .modifier(ContextMenu(self.selection.union(Set([item])), self.menuContent))
+                        .modifier(ContextMenu(self.menu(item), self.menuContent))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                     }
                 }
@@ -96,6 +96,7 @@ extension XPL {
         /// then it should open all the selected rows.
         /// If they double click on a row that is not selected but other rows are selected
         /// then the selection is cleared and only the double clicked item is opened
+        /// On iOS, only the item that is tapped is opened, no matter the selection
         private func open(_ item: Data.Element) {
             guard let openAction = self.openAction else { return }
             #if os(macOS)
@@ -108,6 +109,21 @@ extension XPL {
             #else
             openAction([item])
             #endif
+        }
+        
+        /// Complex logic for context menu selection
+        /// If there is no selection, return the item as the only selection
+        /// If there is a selection and the user right-clicked on one of the select items
+        /// then return the selection
+        /// If there is a selection and the user right-clicked on a non-selected item
+        /// only return the item as a selection
+        private func menu(_ item: Data.Element) -> Selection {
+            guard self.selection.isEmpty == false else { return [item] }
+            if self.selection.contains(item) {
+                return self.selection
+            } else {
+                return [item]
+            }
         }
     }
 }
