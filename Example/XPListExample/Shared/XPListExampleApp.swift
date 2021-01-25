@@ -57,15 +57,16 @@ struct ContentView: View {
     @State var selection = Set<XPL.Element>()
     @State var openAlert: Set<XPL.Element>?
     var body: some View {
-        XPL.List(self.data, selection: self.$selection)
-        { open in
-            self.openAlert = open
-        } menu: { selection in
-            Text("\(selection.count) item(s) context menu:")
-            Text(selection.reduce("", { $0 + "\n" + String(describing: $1) }))
-        } content: { boom in
+        XPL.List(data: self.data,
+                 selection: self.$selection,
+                 open: { self.openAlert = $0 },
+                 menu: { items in
+                    Text("\(items.count) item(s) context menu:")
+                    Text(items.reduce("", { $0 + "\n" + String(describing: $1) }))
+                 })
+        { element in
             HStack{
-                Text("\(boom.id)").font(.headline).frame(minHeight: 44)
+                Text("\(element.id)").font(.headline).frame(minHeight: 44)
                 Spacer()
                 Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }

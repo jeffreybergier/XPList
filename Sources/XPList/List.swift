@@ -68,28 +68,28 @@ extension XPL {
             .modifier(XPL.EditMode())
         }
         
-        public init(_ data: Data,
+        public init(data: Data,
                     selection: Binding<Selection>? = nil,
-                    openAction: OpenAction? = nil,
+                    open: OpenAction? = nil,
                     @ViewBuilder menu: @escaping ContextMenu.Builder,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
         {
             self.data = data
             self.content = content
-            self.openAction = openAction
+            self.openAction = open
             self.menuContent = menu
             _selection = selection ?? Binding.constant([])
         }
         
-        public init(_ data: Data,
+        public init(data: Data,
                     selection: Binding<Selection>? = nil,
-                    openAction: OpenAction? = nil,
+                    open: OpenAction? = nil,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
                     where Menu == Never
         {
             self.data = data
             self.content = content
-            self.openAction = openAction
+            self.openAction = open
             self.menuContent = nil
             _selection = selection ?? Binding.constant([])
         }
@@ -136,7 +136,7 @@ struct Preview_Menu_Open: PreviewProvider {
     static let data = XPL.Collection()
     @State static var selection: Set<XPL.Element> = [data[2], data[4]]
     static var previews: some View {
-        XPL.List(data, selection: $selection)
+        XPL.List(data: data, selection: $selection)
         { open in
             print("Open")
         } menu: { selection in
@@ -158,7 +158,7 @@ struct Preview_Menu_Open: PreviewProvider {
 struct Preview_NoMenu_NoOpen_NoSelection: PreviewProvider {
     static let data = XPL.Collection()
     static var previews: some View {
-        XPL.List(data) { item in
+        XPL.List(data: data) { item in
             HStack {
                 Text("Item: ")
                 Text("\(item.id)")
@@ -185,7 +185,7 @@ struct Preview_Custom_Appearance: PreviewProvider {
                                           selectedAccessory: Image(systemName: "trash.slash.fill"),
                                           deselectedAccessory: Image(systemName: "highlighter"))
     static var previews: some View {
-        XPL.List(data, selection: self.$selection) { item in
+        XPL.List(data: data, selection: self.$selection) { item in
             HStack {
                 Text("Item: ")
                 Text("\(item.id)")
@@ -205,7 +205,7 @@ struct Preview_EditMode: PreviewProvider {
     @State static var selection: Set<XPL.Element> = [data[2], data[4]]
     @State static var editMode = EditMode.active
     static var previews: some View {
-        XPL.List(data, selection: $selection) { item in
+        XPL.List(data: data, selection: $selection) { item in
             HStack {
                 Text("Item: ")
                 Text("\(item.id)")
