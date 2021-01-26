@@ -38,6 +38,13 @@ List / TableView have many many features and so it would be hard to recreate the
 - Tap gestures on macOS suck and so click and double-click actions feel like they take forever
 - Animations work by fading cells in. No right or left appearance like with SwiftUI.List
 
+### Future Plans
+
+Once Apple fixes the crash shown in the GIST above, I will probably replace LazyVStack with List. Then I get all the behavior I want for free. But I like this API a lot better so I'll probably keep this project but just replace the underlying implementation to get more automatic behavior. But until then, I plan to implement the following things:
+
+- Keyboard navigation (up, down, return, esc)
+- Shift selection
+
 ### GIFs
 
 ![Demo macOS GIF](./Example/demo_macOS.gif)
