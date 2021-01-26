@@ -27,19 +27,27 @@ struct XPListExampleApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                List(0 ..< 3) { idx in
+                List(0 ..< 5) { idx in
                     switch idx {
                     case 0:
-                        NavigationLink(destination: ContentView(title: "XPList Demo"),
+                        NavigationLink(destination: WithSelection(title: "XPList Demo"),
                                        isActive: self.$isDefaultActive,
                                        label: { Text("Default") })
                     case 1:
                         NavigationLink("Halloween",
-                                       destination: ContentView(title: "Halloween")
+                                       destination: WithSelection(title: "Halloween")
                                         .environment(\.XPL_Configuration, halloween))
                     case 2:
                         NavigationLink("Space",
-                                       destination: ContentView(title: "Space")
+                                       destination: WithSelection(title: "Space")
+                                        .environment(\.XPL_Configuration, space))
+                    case 3:
+                        NavigationLink("Default (No Selection)",
+                                       destination: WithoutSelection(title: "Space")
+                                        .environment(\.XPL_Configuration, space))
+                    case 4:
+                        NavigationLink("Space (No Selection)",
+                                       destination: WithoutSelection(title: "Space")
                                         .environment(\.XPL_Configuration, space))
                     default:
                         fatalError()
@@ -48,54 +56,6 @@ struct XPListExampleApp: App {
                 .listStyle(SidebarListStyle())
             }
         }
-    }
-}
-
-struct ContentView: View {
-    let title: String
-    @StateObject var data = XPL.Collection()
-    @State var selection = Set<XPL.Element>()
-    @State var openAlert: Set<XPL.Element>?
-    var body: some View {
-        XPL.List(data: self.data,
-                 selection: self.$selection,
-                 open: { self.openAlert = $0 },
-                 menu: { items in
-                    Text("\(items.count) item(s) context menu:")
-                    Text(items.reduce("", { $0 + "\n" + String(describing: $1) }))
-                 })
-        { element in
-            HStack{
-                Text("\(element.id)").font(.headline).frame(minHeight: 44)
-                Spacer()
-                Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
-            }
-        }
-        .animation(.linear(duration: 0.2))
-        .toolbar {
-            #if os(iOS)
-            ToolbarItem(placement: .bottomBar) {
-                EditButton()
-            }
-            #endif
-            ToolbarItem(placement: .cancellationAction) {
-                Button("Shrink") {
-                    // This causes a crash
-                    self.data.shrink()
-                }
-            }
-            ToolbarItem(placement: .confirmationAction) {
-                Button("Grow") {
-                    self.data.grow()
-                }
-            }
-        }
-        .alert(item: self.$openAlert) { selection in
-            Alert(title: Text("\(selection.count) Item(s)"),
-                  message: Text(selection.reduce("", { $0 + "\n" + String(describing: $1) })),
-                  dismissButton: .cancel())
-        }
-        .navigationTitle(self.title)
     }
 }
 

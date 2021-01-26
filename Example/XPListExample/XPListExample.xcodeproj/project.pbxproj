@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		737A00D225C050730049B763 /* WithSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00D125C050730049B763 /* WithSelection.swift */; };
+		737A00D325C050730049B763 /* WithSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00D125C050730049B763 /* WithSelection.swift */; };
+		737A00D725C050B90049B763 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00D625C050B90049B763 /* Shared.swift */; };
+		737A00D825C050B90049B763 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00D625C050B90049B763 /* Shared.swift */; };
+		737A00DC25C052230049B763 /* WithoutSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00DB25C052230049B763 /* WithoutSelection.swift */; };
+		737A00DD25C052230049B763 /* WithoutSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00DB25C052230049B763 /* WithoutSelection.swift */; };
 		73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
@@ -41,6 +47,9 @@
 
 /* Begin PBXFileReference section */
 		737A00CE25BF03410049B763 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
+		737A00D125C050730049B763 /* WithSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithSelection.swift; sourceTree = "<group>"; };
+		737A00D625C050B90049B763 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		737A00DB25C052230049B763 /* WithoutSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithoutSelection.swift; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
 		73C54EA625BBE5A100068F69 /* XPListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C54EA925BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +105,9 @@
 			children = (
 				737A00CE25BF03410049B763 /* README.md */,
 				73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */,
+				737A00D125C050730049B763 /* WithSelection.swift */,
+				737A00DB25C052230049B763 /* WithoutSelection.swift */,
+				737A00D625C050B90049B763 /* Shared.swift */,
 				73C54ED225BBE6CF00068F69 /* XPList */,
 			);
 			path = Shared;
@@ -252,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				737A00D225C050730049B763 /* WithSelection.swift in Sources */,
 				73C54EF025BBE6CF00068F69 /* NoModifier.swift in Sources */,
 				73E4ED5225BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */,
@@ -261,12 +274,14 @@
 				73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE025BBE6CF00068F69 /* ContextMenu.swift in Sources */,
 				73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */,
+				737A00D725C050B90049B763 /* Shared.swift in Sources */,
 				73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */,
 				73C54EEA25BBE6CF00068F69 /* Accessory.swift in Sources */,
 				73F8B36425BD5F28001A6A09 /* Command.swift in Sources */,
 				73C54EEE25BBE6CF00068F69 /* OpenTrigger.swift in Sources */,
 				73C54EE225BBE6CF00068F69 /* Collection.swift in Sources */,
+				737A00DC25C052230049B763 /* WithoutSelection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				737A00D325C050730049B763 /* WithSelection.swift in Sources */,
 				73C54EF125BBE6CF00068F69 /* NoModifier.swift in Sources */,
 				73E4ED5325BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDF25BBE6CF00068F69 /* RowBackground.swift in Sources */,
@@ -283,12 +299,14 @@
 				73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE125BBE6CF00068F69 /* ContextMenu.swift in Sources */,
 				73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */,
+				737A00D825C050B90049B763 /* Shared.swift in Sources */,
 				73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */,
 				73C54EEB25BBE6CF00068F69 /* Accessory.swift in Sources */,
 				73F8B36525BD5F28001A6A09 /* Command.swift in Sources */,
 				73C54EEF25BBE6CF00068F69 /* OpenTrigger.swift in Sources */,
 				73C54EE325BBE6CF00068F69 /* Collection.swift in Sources */,
+				737A00DD25C052230049B763 /* WithoutSelection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
