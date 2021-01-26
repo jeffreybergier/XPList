@@ -36,7 +36,7 @@ extension XPL {
             self.builder = builder
         }
         
-        public func body(content: Content) -> AnyView {
+        public func body(content: Content) -> some View {
             guard let builder = self.builder else { return AnyView(content) }
             return AnyView(
                 content

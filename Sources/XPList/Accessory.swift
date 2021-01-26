@@ -26,8 +26,8 @@ extension XPL {
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_Configuration) private var config
-        public var body: AnyView? {
-            guard self.isEditMode else { return nil }
+        public var body: some View {
+            guard self.isEditMode else { return AnyView(EmptyView()) }
             let image = self.isSelected
                 ? self.config.selectedAccessory
                 : self.config.deselectedAccessory

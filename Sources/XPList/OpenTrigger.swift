@@ -34,7 +34,7 @@ extension XPL {
             self.action = action
         }
         
-        public func body(content: Content) -> AnyView {
+        public func body(content: Content) -> some View {
             #if os(macOS)
             let tapCount: Int = 2
             #else
