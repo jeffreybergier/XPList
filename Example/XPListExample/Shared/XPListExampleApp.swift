@@ -43,11 +43,10 @@ struct XPListExampleApp: App {
                                         .environment(\.XPL_Configuration, space))
                     case 3:
                         NavigationLink("Default (No Selection)",
-                                       destination: WithoutSelection(title: "Space")
-                                        .environment(\.XPL_Configuration, space))
+                                       destination: WithoutSelection(title: "Default (No Selection)"))
                     case 4:
                         NavigationLink("Space (No Selection)",
-                                       destination: WithoutSelection(title: "Space")
+                                       destination: WithoutSelection(title: "Space (No Selection)")
                                         .environment(\.XPL_Configuration, space))
                     default:
                         fatalError()
