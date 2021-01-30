@@ -35,6 +35,7 @@ struct WithoutSelection: View {
                 Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }
         }
+        .onAppear { self.data.load() }
         .modifier(Toolbar(data: self.data))
         .modifier(Open(open: self.$open))
         .navigationTitle(self.title)

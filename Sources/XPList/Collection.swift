@@ -37,7 +37,7 @@ extension XPL {
         typealias Element = XPL.Element
         
         var startIndex: Index = 0
-        var endIndex: Index = 6
+        var endIndex: Index = 0
         
         func grow() {
             self.objectWillChange.send()
@@ -47,6 +47,10 @@ extension XPL {
             guard self.endIndex > self.startIndex else { return }
             self.objectWillChange.send()
             self.endIndex -= 1
+        }
+        func load() {
+            self.objectWillChange.send()
+            self.endIndex = 10_000
         }
         
         subscript(index: Index) -> Element {
