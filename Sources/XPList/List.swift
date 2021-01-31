@@ -131,6 +131,7 @@ extension XPL {
     }
 }
 
+/*
 #if DEBUG
 struct Preview_Menu_Open: PreviewProvider {
     static let data = XPL.Collection()
@@ -220,3 +221,4 @@ struct Preview_EditMode: PreviewProvider {
 }
 #endif
 #endif
+*/

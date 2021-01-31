@@ -21,8 +21,9 @@
 
 import SwiftUI
 
-struct Toolbar: ViewModifier {
-    @ObservedObject var data: XPL.Collection
+struct Toolbar2: ViewModifier {
+    let shrink: () -> Void
+    let grow: () -> Void
     func body(content: Content) -> some View {
         content
             .toolbar {
@@ -32,22 +33,17 @@ struct Toolbar: ViewModifier {
                 }
                 #endif
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Shrink") {
-                        // This causes a crash
-                        self.data.shrink()
-                    }
+                    Button(action: self.shrink, label: { Text("🐞 Shrink") })
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Grow") {
-                        self.data.grow()
-                    }
+                    Button(action: self.grow, label: { Text("Grow") })
                 }
             }
     }
 }
 
-struct Open: ViewModifier {
-    @Binding var open: Set<XPL.Element>?
+struct Open<Element: Identifiable & Hashable>: ViewModifier {
+    @Binding var open: Set<Element>?
     func body(content: Content) -> some View {
         content
             .alert(item: self.$open) { selection in
@@ -55,5 +51,103 @@ struct Open: ViewModifier {
                       message: Text(selection.reduce("", { $0 + "\n" + String(describing: $1) })),
                       dismissButton: .cancel())
             }
+    }
+}
+
+// Crappy example. Do not do this in real code
+extension Set: Identifiable where Element: Identifiable {
+    public var id: Element.ID {
+        return self.first!.id
+    }
+}
+
+protocol Growable {
+    mutating func grow()
+    mutating func shrink()
+    mutating func load()
+}
+
+struct Item: Identifiable, Hashable {
+    var id: Int
+    init(_ id: Int) {
+        self.id = id
+    }
+}
+
+class Observer<Collection: RandomAccessCollection & Growable>: ObservableObject, Growable {
+    
+    private(set) var data: Collection
+    
+    init(_ collection: Collection) {
+        self.data = collection
+    }
+    
+    func grow() {
+        self.objectWillChange.send()
+        self.data.grow()
+    }
+    
+    func shrink() {
+        self.objectWillChange.send()
+        self.data.shrink()
+    }
+    
+    func load() {
+        self.objectWillChange.send()
+        self.data.load()
+    }
+}
+
+class ReferenceCollection: RandomAccessCollection {
+    
+    typealias Index = Int
+    typealias Element = Item
+    
+    var startIndex: Index = 0
+    var endIndex: Index = 0
+    
+    subscript(position: Index) -> Element {
+        guard position < self.endIndex else { fatalError("Index Out of Bounds") }
+        return Item(position)
+    }
+}
+
+struct ValueCollection: RandomAccessCollection {
+    
+    typealias Index = Int
+    typealias Element = Item
+    
+    var startIndex: Index = 0
+    var endIndex: Index = 0
+    
+    subscript(position: Index) -> Element {
+        guard position < self.endIndex else { fatalError("Index Out of Bounds") }
+        return Item(position)
+    }
+}
+
+extension ReferenceCollection: Growable {
+    func grow() {
+        self.endIndex += 1
+    }
+    func shrink() {
+        guard self.startIndex < self.endIndex else { return }
+        self.endIndex -= 1
+    }
+    func load() {
+        self.endIndex = 10
+    }
+}
+
+extension ValueCollection: Growable {    
+    mutating func grow() {
+        self.endIndex += 1
+    }
+    mutating func shrink() {
+        guard self.startIndex < self.endIndex else { return }
+        self.endIndex -= 1
+    }
+    mutating func load() {
+        self.endIndex = 10
     }
 }

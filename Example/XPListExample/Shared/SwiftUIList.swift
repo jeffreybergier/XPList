@@ -1,5 +1,5 @@
 //
-//  Created by Jeffrey Bergier on 2021/01/26.
+//  Created by Jeffrey Bergier on 2021/01/31.
 //
 //  Copyright © 2020 Saturday Apps.
 //
@@ -21,24 +21,28 @@
 
 import SwiftUI
 
-struct WithoutSelection: View {
+struct SwiftUIList<C: RandomAccessCollection & Growable>: View where C.Element: Hashable {
+    
     let title: String
-    @StateObject var data = XPL.Collection()
-    @State var open: Set<XPL.Element>?
+    @StateObject var data: Observer<C>
+    @State private var selection: Set<C.Element> = []
+    
+    init(_ title: String, _ collection: C) {
+        self.title = title
+        _data = .init(wrappedValue: Observer(collection))
+    }
+        
     var body: some View {
-        XPL.List(data: self.data,
-                 open: { self.open = $0 })
-        { element in
-            HStack{
-                Text("\(element.id)").font(.headline).frame(minHeight: 44)
+        List(self.data.data, id: \.self, selection: self.$selection) { item in
+            HStack {
+                Text(String(describing: item))
                 Spacer()
                 Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }
+            .frame(minHeight: 44)
         }
         .onAppear { self.data.load() }
-        .modifier(Toolbar(data: self.data))
-        .modifier(Open(open: self.$open))
         .navigationTitle(self.title)
-        .animation(.linear(duration: 0.2))
+        .modifier(Toolbar2(shrink: self.data.shrink, grow: self.data.grow))
     }
 }

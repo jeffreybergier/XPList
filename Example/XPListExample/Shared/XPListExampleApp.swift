@@ -27,41 +27,34 @@ struct XPListExampleApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                List(0 ..< 5) { idx in
-                    switch idx {
-                    case 0:
-                        NavigationLink(destination: WithSelection(title: "XPList Demo"),
+                List() {
+                    Section(header: Text("SwiftUI.List Bug Example")) {
+                        NavigationLink(destination: SwiftUIList("Reference Collection 🐞", ReferenceCollection()),
                                        isActive: self.$isDefaultActive,
-                                       label: { Text("Default") })
-                    case 1:
-                        NavigationLink("Halloween",
-                                       destination: WithSelection(title: "Halloween")
-                                        .environment(\.XPL_Configuration, halloween))
-                    case 2:
-                        NavigationLink("Space",
-                                       destination: WithSelection(title: "Space")
-                                        .environment(\.XPL_Configuration, space))
-                    case 3:
-                        NavigationLink("Default (No Selection)",
-                                       destination: WithoutSelection(title: "Default (No Selection)"))
-                    case 4:
-                        NavigationLink("Space (No Selection)",
-                                       destination: WithoutSelection(title: "Space (No Selection)")
-                                        .environment(\.XPL_Configuration, space))
-                    default:
-                        fatalError()
+                                       label: { Text("Reference Collection 🐞") })
+                        NavigationLink(destination: SwiftUIList("Value Collection", ValueCollection()),
+                                       label: { Text("Value Collection") })
+                    }
+                    Section(header: Text("XPL.List Bug Example")) {
+                        NavigationLink(destination: XPLList("Reference Collection", ReferenceCollection()),
+                                       label: { Text("Reference Collection") })
+                        NavigationLink(destination: XPLList("Value Collection", ValueCollection()),
+                                       label: { Text("Value Collection") })
+                    }
+                    Section(header: Text("XPL.List Demo")) {
+                        NavigationLink(destination: XPLList("Default Appearance", ValueCollection()),
+                                       label: { Text("Default Appearance") })
+                        NavigationLink(destination: XPLList("Halloween Appearance", ValueCollection())
+                                        .environment(\.XPL_Configuration, halloween),
+                                       label: { Text("Halloween Appearance") })
+                        NavigationLink(destination: XPLList("Space Appearance", ValueCollection())
+                                        .environment(\.XPL_Configuration, space),
+                                       label: { Text("Space Appearance") })
                     }
                 }
                 .listStyle(SidebarListStyle())
             }
         }
-    }
-}
-
-// Crappy example. Do not do this in real code
-extension Set: Identifiable where Element: Identifiable {
-    public var id: Element.ID {
-        return self.first!.id
     }
 }
 

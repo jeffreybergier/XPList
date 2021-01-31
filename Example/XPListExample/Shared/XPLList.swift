@@ -1,5 +1,5 @@
 //
-//  Created by Jeffrey Bergier on 2021/01/26.
+//  Created by Jeffrey Bergier on 2021/01/31.
 //
 //  Copyright © 2020 Saturday Apps.
 //
@@ -21,31 +21,39 @@
 
 import SwiftUI
 
-struct WithSelection: View {
+struct XPLList<C: RandomAccessCollection & Growable>: View where C.Element: Hashable & Identifiable {
+    
     let title: String
-    @StateObject var data = XPL.Collection()
-    @State var selection = Set<XPL.Element>()
-    @State var open: Set<XPL.Element>?
+    @StateObject var data: Observer<C>
+    @State private var selection: Set<C.Element> = []
+    
+    init(_ title: String, _ collection: C) {
+        self.title = title
+        _data = .init(wrappedValue: Observer(collection))
+    }
+        
     var body: some View {
-        XPL.List(data: self.data,
+        XPL.List(data: self.data.data,
                  selection: self.$selection,
                  open: { self.open = $0 },
-                 menu: { self.menu($0)})
-        { element in
-            HStack{
-                Text("\(element.id)").font(.headline).frame(minHeight: 44)
+                 menu: { self.menu($0) })
+        { item in
+            HStack {
+                Text(String(describing: item))
                 Spacer()
                 Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }
+            .frame(minHeight: 44)
         }
         .onAppear { self.data.load() }
-        .modifier(Toolbar(data: self.data))
-        .modifier(Open(open: self.$open))
         .navigationTitle(self.title)
-        .animation(.linear(duration: 0.2))
+        .modifier(Toolbar2(shrink: self.data.shrink, grow: self.data.grow))
+        .modifier(Open(open: self.$open))
     }
     
-    @ViewBuilder private func menu(_ items: Set<XPL.Element>) -> some View {
+    /// MARK: Open and Menu
+    @State private var open: Set<C.Element>?
+    @ViewBuilder private func menu(_ items: Set<C.Element>) -> some View {
         Text("\(items.count) item(s)")
         ForEach(Array(items)) {
             Text(String(describing: $0))
