@@ -24,24 +24,22 @@
 //  SOFTWARE.
 //
 
-
-#if canImport(AppKit)
-import AppKit
+#if canImport(UIKit)
+import UIKit
 import SwiftUI
 
-internal struct _ClickReceiver: NSViewRepresentable {
+internal struct _ClickReceiver: UIViewRepresentable {
     let clickCount: Int
     let modifiers: EventModifiers
     let startAction: ClickReceiver.Action
     let finishAction: ClickReceiver.Action
-    typealias NSViewType = __ClickReceiver
-    func makeNSView(context: Context) -> __ClickReceiver {
+    typealias UIViewType = __ClickReceiver
+    func makeUIView(context: Context) -> __ClickReceiver {
         let view = __ClickReceiver()
-        view.wantsLayer = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-    func updateNSView(_ view: __ClickReceiver, context: Context) {
+    func updateUIView(_ view: __ClickReceiver, context: Context) {
         view.clickCount = self.clickCount
         view.modifiers = self.modifiers
         view.startAction = self.startAction
@@ -49,43 +47,44 @@ internal struct _ClickReceiver: NSViewRepresentable {
     }
 }
 
-internal class __ClickReceiver: NSView {
+internal class __ClickReceiver: UIView {
     var clickCount: Int = -1
     var modifiers: EventModifiers = []
     var startAction: ClickReceiver.Action = {}
     var finishAction: ClickReceiver.Action = {}
-    override var acceptsFirstResponder: Bool {
-        return true
-    }
-    override func mouseDown(with event: NSEvent) {
-        // If the event can't possibly ever meet our criteria, call super
-        guard
-            event.clickCount <= self.clickCount,
-            event.modifierFlags.intersection(.deviceIndependentFlagsMask) == self.modifiers.nativeValue
-        else {
-            super.mouseDown(with: event)
+    
+    override var canBecomeFirstResponder: Bool { return true }
+    
+    @objc private func tap(_ sender: UITapGestureRecognizer) {
+        guard sender.modifierFlags == self.modifiers.nativeValue else {
+            sender.state = .cancelled
             return
         }
-        // If the event exactly matches our criteria, call our closure
-        guard event.clickCount == self.clickCount else { return }
-        self.startAction()
-    }
-    override func mouseUp(with event: NSEvent) {
-        // If the event doesn't exactly matches our criteria, call super
-        guard
-            event.clickCount == self.clickCount,
-            event.modifierFlags.intersection(.deviceIndependentFlagsMask) == self.modifiers.nativeValue
-        else {
-            super.mouseUp(with: event)
-            return
+        switch sender.state {
+        case .began:
+            // TODO: Fix that began is never called
+            self.startAction()
+        case .ended:
+            self.finishAction()
+        default:
+            break
         }
-        self.finishAction()
+    }
+    
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        let long = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
+        if self.clickCount > 1 {
+            NSLog("ClickCount higher than 1 not working on iOS for some reason 🤷‍♀️")
+        }
+        long.numberOfTapsRequired = self.clickCount
+        self.addGestureRecognizer(long)
     }
 }
 
 extension EventModifiers {
-    fileprivate var nativeValue: NSEvent.ModifierFlags {
-        var output: NSEvent.ModifierFlags = []
+    fileprivate var nativeValue: UIKeyModifierFlags {
+        var output: UIKeyModifierFlags = []
         if self.contains(.command) {
             output.insert(.command)
         }
@@ -93,16 +92,13 @@ extension EventModifiers {
             output.insert(.control)
         }
         if self.contains(.option) {
-            output.insert(.option)
+            output.insert(.alternate)
         }
         if self.contains(.shift) {
             output.insert(.shift)
         }
         if self.contains(.capsLock) {
-            output.insert(.capsLock)
-        }
-        if self.contains(.function) {
-            output.insert(.function)
+            output.insert(.alphaShift)
         }
         if self.contains(.numericPad) {
             output.insert(.numericPad)
@@ -110,4 +106,5 @@ extension EventModifiers {
         return output
     }
 }
+
 #endif

@@ -51,40 +51,12 @@ public struct ClickReceiver: ViewModifier {
     }
     
     public func body(content: Content) -> some View {
-        #if canImport(AppKit)
-        return ZStack {
+        ZStack {
             content
             _ClickReceiver(clickCount: self.clickCount,
                            modifiers: self.modifiers,
                            startAction: self.startAction,
                            finishAction: self.finishAction)
         }
-        #else
-        return content
-        #endif
     }
 }
-
-#if canImport(AppKit)
-import AppKit
-internal struct _ClickReceiver: NSViewRepresentable {
-    let clickCount: Int
-    let modifiers: EventModifiers
-    let startAction: ClickReceiver.Action
-    let finishAction: ClickReceiver.Action
-    typealias NSViewType = __ClickReceiver
-    func makeNSView(context: Context) -> __ClickReceiver {
-        let view = __ClickReceiver()
-        view.wantsLayer = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
-    func updateNSView(_ view: __ClickReceiver, context: Context) {
-        view.clickCount = self.clickCount
-        view.modifiers = self.modifiers
-        view.startAction = self.startAction
-        view.finishAction = self.finishAction
-    }
-}
-#else
-#endif
