@@ -28,14 +28,12 @@ import SwiftUI
 
 @main
 struct XPListExampleApp: App {
-    @State var isDefaultActive = true
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 List() {
                     Section(header: Text("SwiftUI.List Bug Example")) {
                         NavigationLink(destination: SwiftUIList("Reference Collection 🐞", ReferenceCollection()),
-                                       isActive: self.$isDefaultActive,
                                        label: { Text("Reference Collection 🐞") })
                         NavigationLink(destination: SwiftUIList("Value Collection", ValueCollection()),
                                        label: { Text("Value Collection") })
