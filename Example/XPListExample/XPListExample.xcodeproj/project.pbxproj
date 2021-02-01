@@ -13,6 +13,12 @@
 		733BEAD025C65F9E003E70CB /* XPLList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733BEACE25C65F9E003E70CB /* XPLList.swift */; };
 		737A00D725C050B90049B763 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00D625C050B90049B763 /* Shared.swift */; };
 		737A00D825C050B90049B763 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A00D625C050B90049B763 /* Shared.swift */; };
+		737BE70525C801ED003B6A3C /* ClickReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE70425C801ED003B6A3C /* ClickReceiver.swift */; };
+		737BE70625C801ED003B6A3C /* ClickReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE70425C801ED003B6A3C /* ClickReceiver.swift */; };
+		737BE71025C830EB003B6A3C /* BoolModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE70F25C830EB003B6A3C /* BoolModifiers.swift */; };
+		737BE71125C830EB003B6A3C /* BoolModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE70F25C830EB003B6A3C /* BoolModifiers.swift */; };
+		737BE71D25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */; };
+		737BE71E25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */; };
 		73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
@@ -29,18 +35,10 @@
 		73C54EEB25BBE6CF00068F69 /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED925BBE6CF00068F69 /* Accessory.swift */; };
 		73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDA25BBE6CF00068F69 /* EditMode.swift */; };
 		73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDA25BBE6CF00068F69 /* EditMode.swift */; };
-		73C54EEE25BBE6CF00068F69 /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */; };
-		73C54EEF25BBE6CF00068F69 /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */; };
-		73C54EF025BBE6CF00068F69 /* NoModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDC25BBE6CF00068F69 /* NoModifier.swift */; };
-		73C54EF125BBE6CF00068F69 /* NoModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDC25BBE6CF00068F69 /* NoModifier.swift */; };
 		73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDD25BBE6CF00068F69 /* Configuration.swift */; };
 		73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDD25BBE6CF00068F69 /* Configuration.swift */; };
 		73E4ED5225BC26B600409486 /* ForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4ED5125BC26B600409486 /* ForegroundColor.swift */; };
 		73E4ED5325BC26B600409486 /* ForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4ED5125BC26B600409486 /* ForegroundColor.swift */; };
-		73F8B36425BD5F28001A6A09 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36325BD5F28001A6A09 /* Command.swift */; };
-		73F8B36525BD5F28001A6A09 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36325BD5F28001A6A09 /* Command.swift */; };
-		73F8B36925BD5F4E001A6A09 /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36825BD5F4E001A6A09 /* Shift.swift */; };
-		73F8B36A25BD5F4E001A6A09 /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8B36825BD5F4E001A6A09 /* Shift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +46,9 @@
 		733BEACE25C65F9E003E70CB /* XPLList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPLList.swift; sourceTree = "<group>"; };
 		737A00CE25BF03410049B763 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
 		737A00D625C050B90049B763 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		737BE70425C801ED003B6A3C /* ClickReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver.swift; sourceTree = "<group>"; };
+		737BE70F25C830EB003B6A3C /* BoolModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolModifiers.swift; sourceTree = "<group>"; };
+		737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_mac.swift; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
 		73C54EA625BBE5A100068F69 /* XPListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C54EA925BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,12 +62,8 @@
 		73C54ED825BBE6CF00068F69 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		73C54ED925BBE6CF00068F69 /* Accessory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		73C54EDA25BBE6CF00068F69 /* EditMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMode.swift; sourceTree = "<group>"; };
-		73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTrigger.swift; sourceTree = "<group>"; };
-		73C54EDC25BBE6CF00068F69 /* NoModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoModifier.swift; sourceTree = "<group>"; };
 		73C54EDD25BBE6CF00068F69 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		73E4ED5125BC26B600409486 /* ForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundColor.swift; sourceTree = "<group>"; };
-		73F8B36325BD5F28001A6A09 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
-		73F8B36825BD5F4E001A6A09 /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +144,6 @@
 				73C54ED825BBE6CF00068F69 /* List.swift */,
 				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
 				73C54EDA25BBE6CF00068F69 /* EditMode.swift */,
-				73C54EDB25BBE6CF00068F69 /* OpenTrigger.swift */,
 				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
 				73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */,
 			);
@@ -158,9 +154,9 @@
 		73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */ = {
 			isa = PBXGroup;
 			children = (
-				73C54EDC25BBE6CF00068F69 /* NoModifier.swift */,
-				73F8B36325BD5F28001A6A09 /* Command.swift */,
-				73F8B36825BD5F4E001A6A09 /* Shift.swift */,
+				737BE70425C801ED003B6A3C /* ClickReceiver.swift */,
+				737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */,
+				737BE70F25C830EB003B6A3C /* BoolModifiers.swift */,
 			);
 			path = SelectionTrigger;
 			sourceTree = "<group>";
@@ -260,23 +256,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73C54EF025BBE6CF00068F69 /* NoModifier.swift in Sources */,
 				73E4ED5225BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */,
+				737BE71025C830EB003B6A3C /* BoolModifiers.swift in Sources */,
 				733BEAC425C6535D003E70CB /* SwiftUIList.swift in Sources */,
 				73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */,
-				73F8B36925BD5F4E001A6A09 /* Shift.swift in Sources */,
 				73C54EE825BBE6CF00068F69 /* List.swift in Sources */,
 				73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE025BBE6CF00068F69 /* ContextMenu.swift in Sources */,
+				737BE70525C801ED003B6A3C /* ClickReceiver.swift in Sources */,
 				73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */,
 				733BEACF25C65F9E003E70CB /* XPLList.swift in Sources */,
 				737A00D725C050B90049B763 /* Shared.swift in Sources */,
 				73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
+				737BE71D25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
 				73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */,
 				73C54EEA25BBE6CF00068F69 /* Accessory.swift in Sources */,
-				73F8B36425BD5F28001A6A09 /* Command.swift in Sources */,
-				73C54EEE25BBE6CF00068F69 /* OpenTrigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,23 +279,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73C54EF125BBE6CF00068F69 /* NoModifier.swift in Sources */,
 				73E4ED5325BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDF25BBE6CF00068F69 /* RowBackground.swift in Sources */,
+				737BE71125C830EB003B6A3C /* BoolModifiers.swift in Sources */,
 				733BEAC525C6535D003E70CB /* SwiftUIList.swift in Sources */,
 				73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */,
-				73F8B36A25BD5F4E001A6A09 /* Shift.swift in Sources */,
 				73C54EE925BBE6CF00068F69 /* List.swift in Sources */,
 				73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE125BBE6CF00068F69 /* ContextMenu.swift in Sources */,
+				737BE70625C801ED003B6A3C /* ClickReceiver.swift in Sources */,
 				73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */,
 				733BEAD025C65F9E003E70CB /* XPLList.swift in Sources */,
 				737A00D825C050B90049B763 /* Shared.swift in Sources */,
 				73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
+				737BE71E25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
 				73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */,
 				73C54EEB25BBE6CF00068F69 /* Accessory.swift in Sources */,
-				73F8B36525BD5F28001A6A09 /* Command.swift in Sources */,
-				73C54EEF25BBE6CF00068F69 /* OpenTrigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

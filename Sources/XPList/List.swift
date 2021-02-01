@@ -58,10 +58,10 @@ extension XPL {
                             .padding(self.config.cellPadding)
                         }
                         .modifier(ForegroundColor())
-                        .modifier(XPL.OpenTrigger { self.open(item) })
-                        .modifier(XPL.SelectionTrigger.Shift(item: item, selection: self.$selection))
-                        .modifier(XPL.SelectionTrigger.Command(item: item, selection: self.$selection))
-                        .modifier(XPL.SelectionTrigger.NoModifier(item: item, selection: self.$selection))
+                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 2, finish: { self.open(item) })))
+                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, finish: { self.singleSelect(item) })))
+                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, modifiers: [.command], finish: { self.commandSelect(item) })))
+                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, modifiers: [.shift], finish: { self.shiftSelect(item) })))
                         .modifier(ContextMenu(self.menu(item), self.menuContent))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                     }
@@ -71,6 +71,62 @@ extension XPL {
             // .background(self.config.deselectedBackground)
             .onTapGesture { self.selection = [] }
             .modifier(XPL.EditMode())
+        }
+        
+        /// Complex logic for context menu selection
+        /// If there is no selection, return the item as the only selection
+        /// If there is a selection and the user right-clicked on one of the select items
+        /// then return the selection
+        /// If there is a selection and the user right-clicked on a non-selected item
+        /// only return the item as a selection
+        private func menu(_ item: Data.Element) -> Selection {
+            guard self.selection.isEmpty == false else { return [item] }
+            if self.selection.contains(item) {
+                return self.selection
+            } else {
+                return [item]
+            }
+        }
+        
+        /// Complex logic applies to macOS.
+        /// If they double click on a row that is selected (and other rows are selected)
+        /// then it should open all the selected rows.
+        /// If they double click on a row that is not selected but other rows are selected
+        /// then the selection is cleared and only the double clicked item is opened
+        /// On iOS, only the item that is tapped is opened, no matter the selection
+        private func open(_ item: Data.Element) {
+            guard let openAction = self.openAction else { return }
+            #if os(macOS)
+            if self.selection.contains(item) {
+                openAction(self.selection)
+            } else {
+                self.selection.removeAll()
+                openAction([item])
+            }
+            #else
+            openAction([item])
+            #endif
+        }
+        
+        public func singleSelect(_ item: Data.Element) {
+            #if os(macOS)
+            self.selection.removeAll()
+            self.selection.insert(item)
+            #else
+            self.commandSelect(item)
+            #endif
+        }
+        
+        public func commandSelect(_ item: Data.Element) {
+            if self.selection.contains(item) {
+                self.selection.remove(item)
+            } else {
+                self.selection.insert(item)
+            }
+        }
+        
+        public func shiftSelect(_ item: Data.Element) {
+            NSLog("Shift Selection Not Implemented")
         }
         
         public init(data: Data,
@@ -97,41 +153,6 @@ extension XPL {
             self.openAction = open
             self.menuContent = nil
             _selection = selection ?? Binding.constant([])
-        }
-        
-        /// Complex logic applies to macOS.
-        /// If they double click on a row that is selected (and other rows are selected)
-        /// then it should open all the selected rows.
-        /// If they double click on a row that is not selected but other rows are selected
-        /// then the selection is cleared and only the double clicked item is opened
-        /// On iOS, only the item that is tapped is opened, no matter the selection
-        private func open(_ item: Data.Element) {
-            guard let openAction = self.openAction else { return }
-            #if os(macOS)
-            if self.selection.contains(item) {
-                openAction(self.selection)
-            } else {
-                self.selection.removeAll()
-                openAction([item])
-            }
-            #else
-            openAction([item])
-            #endif
-        }
-        
-        /// Complex logic for context menu selection
-        /// If there is no selection, return the item as the only selection
-        /// If there is a selection and the user right-clicked on one of the select items
-        /// then return the selection
-        /// If there is a selection and the user right-clicked on a non-selected item
-        /// only return the item as a selection
-        private func menu(_ item: Data.Element) -> Selection {
-            guard self.selection.isEmpty == false else { return [item] }
-            if self.selection.contains(item) {
-                return self.selection
-            } else {
-                return [item]
-            }
         }
     }
 }
