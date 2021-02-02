@@ -63,5 +63,8 @@ public struct ClickModifier: ViewModifier {
     
     private func highlight() {
         self.isHighlighted = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.isHighlighted = false
+        }
     }
 }
