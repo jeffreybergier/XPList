@@ -26,59 +26,65 @@
 
 import SwiftUI
 
-public struct If<Y: ViewModifier, N: ViewModifier>: ViewModifier {
+public enum Either<A, B> {
+    case a(A), b(B)
+}
+
+public struct If<A: ViewModifier, B: ViewModifier>: ViewModifier {
     
-    private let isTrue: Bool
-    private let yes: () -> Y
-    private let no: () -> N
+    private let value: Either<A, B>?
     
-    public init(_ isTrue: Bool, _ yes: @escaping @autoclosure () -> Y, _ no: @escaping @autoclosure () -> N) {
-        self.isTrue = isTrue
-        self.yes = yes
-        self.no = no
+    public init(_ value: Either<A, B>?) {
+        self.value = value
+    }
+    
+    public init(_ isTrue: Bool, _ yes: A, _ no: B) {
+        self.value = isTrue ? .a(yes) : .b(no)
     }
     
     public func body(content: Content) -> some View {
-        if self.isTrue {
-            guard Y.self != Never.self else { return AnyView(content) }
-            return AnyView(content.modifier(self.yes()))
-        } else {
-            guard N.self != Never.self else { return AnyView(content) }
-            return AnyView(content.modifier(self.no()))
+        guard let value = self.value else { return AnyView(content) }
+        switch value {
+        case .a(let a):
+            return AnyView(content.modifier(a))
+        case .b(let b):
+            return AnyView(content.modifier(b))
         }
     }
 }
 
-public func IfMac<Y: ViewModifier, N: ViewModifier>(and isTrue: Bool, _ y: Y, _ n: N) -> If<Y, N> {
-    #if os(macOS)
-    return If(isTrue, y, n)
-    #else
-    return If(false, y, n)
-    #endif
-}
+extension If {
+    public static func mac(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
+        #if os(macOS)
+        return If(isTrue, yes, no)
+        #else
+        return If(nil)
+        #endif
+    }
 
-public func IfMac<Y: ViewModifier>(_ y: Y) -> If<Y, Never> {
-    #if os(macOS)
-    return If(true, y, fatalError())
-    #else
-    return If(false, y, fatalError())
-    #endif
-}
+    public static func mac(_ yes: A) -> If<A, B> where B == Never {
+        #if os(macOS)
+        return If(.a(yes))
+        #else
+        return If(nil)
+        #endif
+    }
 
-public func IfiOS<Y: ViewModifier, N: ViewModifier>(and isTrue: Bool, _ y: Y, _ n: N) -> If<Y, N> {
-    #if os(iOS)
-    return If(isTrue, y, n)
-    #else
-    return If(false, y, n)
-    #endif
-}
+    public static func iOS(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
+        #if os(iOS)
+        return If(isTrue, yes, no)
+        #else
+        return If(nil)
+        #endif
+    }
 
-public func IfiOS<Y: ViewModifier>(_ y: Y) -> If<Y, Never> {
-    #if os(iOS)
-    return If(true, y, { () -> Never in fatalError() }())
-    #else
-    return If(false, y, { () -> Never in fatalError() }())
-    #endif
+    public static func iOS(_ yes: A) -> If<A, B> {
+        #if os(iOS)
+        return If(.a(y))
+        #else
+        return If(nil)
+        #endif
+    }
 }
 
 extension Never: ViewModifier {}
