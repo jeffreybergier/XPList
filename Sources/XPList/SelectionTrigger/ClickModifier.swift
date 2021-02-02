@@ -52,17 +52,13 @@ public struct ClickModifier: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .environment(\.XPL_isHighlighted, self.isHighlighted)
-            .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, modifiers: [.command], finish: self.commandSelect)))
-            .modifier(IfModifier.isMac(ClickReceiver(clickCount: 2, finish: self.open)))
-            .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, finish: self.singleSelect)))
-            .modifier(ClickReceiver(clickCount: 1, modifiers: [.shift], finish: self.shiftSelect))
-            .modifier(IfModifier.isiOS(ClickReceiver(clickCount: 1, finish: {
-                if self.isEditMode {
-                    self.commandSelect()
-                } else {
-                    self.open()
-                }
-            })))
+            .modifier(IfMac(ClickReceiver(clickCount: 1, modifiers: [.command], finish: self.commandSelect)))
+            .modifier(IfMac(ClickReceiver(clickCount: 2, finish: self.open)))
+            .modifier(IfMac(ClickReceiver(clickCount: 1, finish: self.singleSelect)))
+            .modifier(IfMac(ClickReceiver(clickCount: 1, modifiers: [.shift], finish: self.shiftSelect)))
+            .modifier(IfiOS(and: self.isEditMode,
+                            ClickReceiver(clickCount: 1, finish: self.commandSelect),
+                            ClickReceiver(clickCount: 1, start: self.highlight, finish: self.open)))
     }
     
     private func highlight() {

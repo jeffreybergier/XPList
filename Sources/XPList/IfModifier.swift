@@ -26,13 +26,13 @@
 
 import SwiftUI
 
-public struct OrModifier<Y: ViewModifier, N: ViewModifier>: ViewModifier {
+public struct If<Y: ViewModifier, N: ViewModifier>: ViewModifier {
     
     private let isTrue: Bool
-    private let yes: Y
-    private let no: N
+    private let yes: () -> Y
+    private let no: () -> N
     
-    public init(_ isTrue: Bool, _ yes: Y, _ no: N) {
+    public init(_ isTrue: Bool, _ yes: @escaping @autoclosure () -> Y, _ no: @escaping @autoclosure () -> N) {
         self.isTrue = isTrue
         self.yes = yes
         self.no = no
@@ -40,44 +40,45 @@ public struct OrModifier<Y: ViewModifier, N: ViewModifier>: ViewModifier {
     
     public func body(content: Content) -> some View {
         if self.isTrue {
-            return AnyView(content.modifier(self.yes))
+            guard Y.self != Never.self else { return AnyView(content) }
+            return AnyView(content.modifier(self.yes()))
         } else {
-            return AnyView(content.modifier(self.no))
+            guard N.self != Never.self else { return AnyView(content) }
+            return AnyView(content.modifier(self.no()))
         }
     }
 }
 
-public struct IfModifier<Y: ViewModifier>: ViewModifier {
-    
-    static func isMac(_ yes: Y) -> IfModifier {
-        #if os(macOS)
-        return .init(true, yes)
-        #else
-        return .init(false, yes)
-        #endif
-    }
-    
-    static func isiOS(_ yes: Y) -> IfModifier {
-        #if os(iOS)
-        return .init(true, yes)
-        #else
-        return .init(false, yes)
-        #endif
-    }
-    
-    private let isTrue: Bool
-    private let yes: Y
-    
-    public init(_ isTrue: Bool, _ yes: Y) {
-        self.isTrue = isTrue
-        self.yes = yes
-    }
-    
-    public func body(content: Content) -> some View {
-        if self.isTrue {
-            return AnyView(content.modifier(self.yes))
-        } else {
-            return AnyView(content)
-        }
-    }
+public func IfMac<Y: ViewModifier, N: ViewModifier>(and isTrue: Bool, _ y: Y, _ n: N) -> If<Y, N> {
+    #if os(macOS)
+    return If(isTrue, y, n)
+    #else
+    return If(false, y, n)
+    #endif
 }
+
+public func IfMac<Y: ViewModifier>(_ y: Y) -> If<Y, Never> {
+    #if os(macOS)
+    return If(true, y, fatalError())
+    #else
+    return If(false, y, fatalError())
+    #endif
+}
+
+public func IfiOS<Y: ViewModifier, N: ViewModifier>(and isTrue: Bool, _ y: Y, _ n: N) -> If<Y, N> {
+    #if os(iOS)
+    return If(isTrue, y, n)
+    #else
+    return If(false, y, n)
+    #endif
+}
+
+public func IfiOS<Y: ViewModifier>(_ y: Y) -> If<Y, Never> {
+    #if os(iOS)
+    return If(true, y, { () -> Never in fatalError() }())
+    #else
+    return If(false, y, { () -> Never in fatalError() }())
+    #endif
+}
+
+extension Never: ViewModifier {}
