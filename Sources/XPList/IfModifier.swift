@@ -80,7 +80,7 @@ extension If {
 
     public static func iOS(_ yes: A) -> If<A, B> {
         #if os(iOS)
-        return If(.a(y))
+        return If(.a(yes))
         #else
         return If(nil)
         #endif

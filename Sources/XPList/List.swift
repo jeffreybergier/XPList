@@ -97,7 +97,7 @@ extension XPL {
             if self.selection.contains(item) {
                 openAction(self.selection)
             } else {
-                self.selection.removeAll()
+                self.selection = [item]
                 openAction([item])
             }
             #else
@@ -107,8 +107,8 @@ extension XPL {
         
         public func singleSelect(_ item: Data.Element) {
             #if os(macOS)
-            self.selection.removeAll()
-            self.selection.insert(item)
+            guard self.selection.contains(item) == false else { return }
+            self.selection = [item]
             #else
             self.commandSelect(item)
             #endif

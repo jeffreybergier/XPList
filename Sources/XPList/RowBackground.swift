@@ -35,16 +35,16 @@ extension XPL {
         @Environment(\.XPL_Configuration) private var config
         
         public var body: some View {
-            let `default` = self.config.deselectedBackground.animation(.linear(duration: 0.12))
-            let modified = self.config.selectedBackground
+            let `default` = self.config.deselectedBackground.animation(.linear(duration: 0.07))
+            let modified = self.config.selectedBackground.animation(nil)
             if self.isHighlighted {
-                return modified.animation(nil)
+                return modified
             }
             #if os(iOS)
             guard self.isEditMode else { return `default` }
             #endif
             if self.isSelected {
-                return modified.animation(.linear(duration: 0.08))
+                return modified
             }
             return `default`
         }
