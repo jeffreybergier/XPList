@@ -25,60 +25,91 @@
 //
 
 #if canImport(UIKit)
-import UIKit
 import SwiftUI
+import UIKit
+import UIKit.UIGestureRecognizerSubclass
 
 internal struct _ClickReceiver: UIViewRepresentable {
     let clickCount: Int
     let modifiers: EventModifiers
     let startAction: ClickReceiver.Action
     let finishAction: ClickReceiver.Action
-    typealias UIViewType = __ClickReceiver
-    func makeUIView(context: Context) -> __ClickReceiver {
-        let view = __ClickReceiver()
+    typealias UIViewType = UIView
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addGestureRecognizer(context.coordinator)
         return view
     }
-    func updateUIView(_ view: __ClickReceiver, context: Context) {
-        view.clickCount = self.clickCount
-        view.modifiers = self.modifiers
-        view.startAction = self.startAction
-        view.finishAction = self.finishAction
+    func updateUIView(_ view: UIView, context: Context) {
+        let gr = context.coordinator
+        gr.clickCount = self.clickCount
+        gr.modifiers = self.modifiers
+        gr.startAction = self.startAction
+        gr.finishAction = self.finishAction
+    }
+    func makeCoordinator() -> HighlightTapGestureRecognizer {
+        return HighlightTapGestureRecognizer()
     }
 }
 
-internal class __ClickReceiver: UIView {
-    var clickCount: Int = -1
-    var modifiers: EventModifiers = []
-    var startAction: ClickReceiver.Action = {}
-    var finishAction: ClickReceiver.Action = {}
+internal class HighlightTapGestureRecognizer: UIGestureRecognizer {
+    internal var clickCount: Int = -1
+    internal var modifiers: EventModifiers = []
+    internal var startAction: ClickReceiver.Action = {}
+    internal var finishAction: ClickReceiver.Action = {}
     
-    override var canBecomeFirstResponder: Bool { return true }
-    
-    @objc private func tap(_ sender: UITapGestureRecognizer) {
-        guard sender.modifierFlags == self.modifiers.nativeValue else {
-            sender.state = .cancelled
-            return
-        }
-        switch sender.state {
-        case .began:
-            // TODO: Fix that began is never called
-            self.startAction()
-        case .ended:
-            self.finishAction()
-        default:
-            break
+    override var state: UIGestureRecognizer.State {
+        didSet {
+            switch self.state {
+            case .began:
+                self.startAction()
+            case .ended:
+                self.finishAction()
+            default:
+                break
+            }
         }
     }
     
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        let long = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
-        if self.clickCount > 1 {
-            NSLog("ClickCount higher than 1 not working on iOS for some reason 🤷‍♀️")
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesBegan(touches, with: event)
+        guard
+            event.modifierFlags == self.modifiers.nativeValue,
+            touches.first!.tapCount <= self.clickCount
+        else {
+            self.state = .failed
+            return
         }
-        long.numberOfTapsRequired = self.clickCount
-        self.addGestureRecognizer(long)
+        guard touches.first!.tapCount == self.clickCount else { return }
+        self.state = .began
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesEnded(touches, with: event)
+        guard
+            event.modifierFlags == self.modifiers.nativeValue,
+            touches.first!.tapCount == self.clickCount
+        else {
+            self.state = .failed
+            return
+        }
+        self.state = .ended
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesMoved(touches, with: event)
+        self.state = .failed
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesCancelled(touches, with: event)
+        self.state = .cancelled
+    }
+    
+    override func shouldRequireFailure(of otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        // make sure scrolling continues to work when using this gesture recognizer
+        return otherGestureRecognizer is UIPanGestureRecognizer
     }
 }
 
@@ -99,6 +130,9 @@ extension EventModifiers {
         }
         if self.contains(.capsLock) {
             output.insert(.alphaShift)
+        }
+        if self.contains(.function) {
+            NSLog("EventModifiers.function not available on iOS")
         }
         if self.contains(.numericPad) {
             output.insert(.numericPad)
