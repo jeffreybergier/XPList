@@ -21,6 +21,8 @@
 		737BE71E25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */; };
 		737BE72225C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */; };
 		737BE72325C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */; };
+		737BE72925C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
+		737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
 		73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
@@ -52,6 +54,7 @@
 		737BE70F25C830EB003B6A3C /* BoolModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolModifiers.swift; sourceTree = "<group>"; };
 		737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_mac.swift; sourceTree = "<group>"; };
 		737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_iOS.swift; sourceTree = "<group>"; };
+		737BE72825C98034003B6A3C /* ClickModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickModifier.swift; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
 		73C54EA625BBE5A100068F69 /* XPListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C54EA925BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 		73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */ = {
 			isa = PBXGroup;
 			children = (
+				737BE72825C98034003B6A3C /* ClickModifier.swift */,
 				737BE70425C801ED003B6A3C /* ClickReceiver.swift */,
 				737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */,
 				737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */,
@@ -263,6 +267,7 @@
 				73E4ED5225BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */,
 				737BE71025C830EB003B6A3C /* BoolModifiers.swift in Sources */,
+				737BE72925C98034003B6A3C /* ClickModifier.swift in Sources */,
 				733BEAC425C6535D003E70CB /* SwiftUIList.swift in Sources */,
 				73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */,
 				73C54EE825BBE6CF00068F69 /* List.swift in Sources */,
@@ -287,6 +292,7 @@
 				73E4ED5325BC26B600409486 /* ForegroundColor.swift in Sources */,
 				73C54EDF25BBE6CF00068F69 /* RowBackground.swift in Sources */,
 				737BE71125C830EB003B6A3C /* BoolModifiers.swift in Sources */,
+				737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */,
 				733BEAC525C6535D003E70CB /* SwiftUIList.swift in Sources */,
 				73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */,
 				73C54EE925BBE6CF00068F69 /* List.swift in Sources */,

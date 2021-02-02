@@ -43,7 +43,6 @@ extension XPL {
         @Binding private var selection: Selection
         @Environment(\.colorScheme) private var colorScheme
         @Environment(\.XPL_Configuration) private var config
-        @Environment(\.editMode) private var editMode
 
         public var body: some View {
             ScrollView {
@@ -59,17 +58,10 @@ extension XPL {
                             .padding(self.config.cellPadding)
                         }
                         .modifier(ForegroundColor())
-                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, modifiers: [.command], finish: { self.commandSelect(item) })))
-                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 2, finish: { self.open(item) })))
-                        .modifier(IfModifier.isMac(ClickReceiver(clickCount: 1, finish: { self.singleSelect(item) })))
-                        .modifier(ClickReceiver(clickCount: 1, modifiers: [.shift], finish: { self.shiftSelect(item) }))
-                        .modifier(IfModifier.isiOS(ClickReceiver(clickCount: 1, finish: {
-                            if editMode?.wrappedValue.isEditing ==  true {
-                                self.commandSelect(item)
-                            } else {
-                                self.open(item)
-                            }
-                        })))
+                        .modifier(ClickModifier(open: { self.open(item) },
+                                                singleSelect: { self.singleSelect(item) },
+                                                commandSelect: { self.commandSelect(item) },
+                                                shiftSelect: { self.shiftSelect(item) }))
                         .modifier(ContextMenu(self.menu(item), self.menuContent))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                     }
