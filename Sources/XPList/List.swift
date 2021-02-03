@@ -67,6 +67,7 @@ extension XPL {
                     }
                 }
             }
+            .modifier(OnChange(of: \.XPL_isEditMode, action: { _ in self.selection.removeAll() }))
             .modifier(XPL.EditMode())
         }
         

@@ -23,6 +23,8 @@
 		737BE72325C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */; };
 		737BE72925C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
 		737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
+		73A6BB9625CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
+		73A6BB9725CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
 		73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
@@ -55,6 +57,7 @@
 		737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_mac.swift; sourceTree = "<group>"; };
 		737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_iOS.swift; sourceTree = "<group>"; };
 		737BE72825C98034003B6A3C /* ClickModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickModifier.swift; sourceTree = "<group>"; };
+		73A6BB9525CAD1C600B95F3F /* OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChange.swift; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
 		73C54EA625BBE5A100068F69 /* XPListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C54EA925BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 				73C54EDA25BBE6CF00068F69 /* EditMode.swift */,
 				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
 				737BE70F25C830EB003B6A3C /* IfModifier.swift */,
+				73A6BB9525CAD1C600B95F3F /* OnChange.swift */,
 				73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */,
 			);
 			name = XPList;
@@ -277,6 +281,7 @@
 				737BE72225C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */,
 				73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */,
 				733BEACF25C65F9E003E70CB /* XPLList.swift in Sources */,
+				73A6BB9625CAD1C600B95F3F /* OnChange.swift in Sources */,
 				737A00D725C050B90049B763 /* Shared.swift in Sources */,
 				73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				737BE71D25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
@@ -302,6 +307,7 @@
 				737BE72325C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */,
 				73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */,
 				733BEAD025C65F9E003E70CB /* XPLList.swift in Sources */,
+				73A6BB9725CAD1C600B95F3F /* OnChange.swift in Sources */,
 				737A00D825C050B90049B763 /* Shared.swift in Sources */,
 				73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				737BE71E25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
