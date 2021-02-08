@@ -26,12 +26,12 @@
 
 import SwiftUI
 
-extension XPL {
-    public struct Accessory: View {
+extension XPL1 {
+    internal struct Accessory: View {
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_Configuration) private var config
-        public var body: some View {
+        internal var body: some View {
             guard self.isEditMode else { return AnyView(EmptyView()) }
             let image = self.isSelected
                 ? self.config.selectedAccessory

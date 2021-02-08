@@ -26,10 +26,10 @@
 
 import SwiftUI
 
-extension XPL {
-    public struct RowSeparator: View {
+extension XPL1 {
+    internal struct RowSeparator: View {
         @Environment(\.XPL_Configuration) private var config
-        public var body: some View {
+        internal var body: some View {
             Rectangle()
                 .foregroundColor(self.config.separator)
                 .frame(maxHeight: 0.3)

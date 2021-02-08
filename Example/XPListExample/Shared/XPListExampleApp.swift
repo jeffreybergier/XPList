@@ -61,24 +61,24 @@ struct XPListExampleApp: App {
     }
 }
 
-fileprivate let halloween = XPL.Configuration(cellPadding: .init(top: 6, leading: 16, bottom: 6, trailing: 16),
-                                              separatorPadding: .init(top: 0, leading: 16, bottom: 0, trailing: 0),
-                                              separator: Color.orange,
-                                              selectedBackground: Color.orange.opacity(0.3),
-                                              deselectedBackground: Color.black,
-                                              selectedForeground: Color.orange,
-                                              deselectedForeground: Color.orange.opacity(0.5),
-                                              accessoryAccent: Color.orange,
-                                              selectedAccessory: Image(systemName: "ant.circle.fill"),
-                                              deselectedAccessory: Image(systemName: "ant.circle"))
+fileprivate let halloween = Configuration(cellPadding: .init(top: 6, leading: 16, bottom: 6, trailing: 16),
+                                          separatorPadding: .init(top: 0, leading: 16, bottom: 0, trailing: 0),
+                                          separator: Color.orange,
+                                          selectedBackground: Color.orange.opacity(0.3),
+                                          deselectedBackground: Color.black,
+                                          selectedForeground: Color.orange,
+                                          deselectedForeground: Color.orange.opacity(0.5),
+                                          accessoryAccent: Color.orange,
+                                          selectedAccessory: Image(systemName: "ant.circle.fill"),
+                                          deselectedAccessory: Image(systemName: "ant.circle"))
 
-fileprivate let space = XPL.Configuration(cellPadding: .init(top: 20, leading: 40, bottom: 20, trailing: 40),
-                                              separatorPadding: .init(top: 0, leading: 40, bottom: 0, trailing: 40),
-                                              separator: Color.purple,
-                                              selectedBackground: Color.purple.opacity(0.3),
-                                              deselectedBackground: Color.black,
-                                              selectedForeground: Color.purple,
-                                              deselectedForeground: Color.purple.opacity(0.5),
-                                              accessoryAccent: Color.purple,
-                                              selectedAccessory: Image(systemName: "star.fill"),
-                                              deselectedAccessory: Image(systemName: "moon.stars"))
+fileprivate let space = Configuration(cellPadding: .init(top: 20, leading: 40, bottom: 20, trailing: 40),
+                                      separatorPadding: .init(top: 0, leading: 40, bottom: 0, trailing: 40),
+                                      separator: Color.purple,
+                                      selectedBackground: Color.purple.opacity(0.3),
+                                      deselectedBackground: Color.black,
+                                      selectedForeground: Color.purple,
+                                      deselectedForeground: Color.purple.opacity(0.5),
+                                      accessoryAccent: Color.purple,
+                                      selectedAccessory: Image(systemName: "star.fill"),
+                                      deselectedAccessory: Image(systemName: "moon.stars"))

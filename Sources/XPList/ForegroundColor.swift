@@ -26,13 +26,13 @@
 
 import SwiftUI
 
-extension XPL {
-    public struct ForegroundColor: ViewModifier {
+extension XPL1 {
+    internal struct ForegroundColor: ViewModifier {
         
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_Configuration) private var config
         
-        public func body(content: Content) -> some View {
+        internal func body(content: Content) -> some View {
             return content.foregroundColor(
                 self.isSelected
                     ? self.config.selectedForeground

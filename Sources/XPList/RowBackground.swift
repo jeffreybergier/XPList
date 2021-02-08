@@ -26,15 +26,15 @@
 
 import SwiftUI
 
-extension XPL {
-    public struct RowBackground: View {
+extension XPL1 {
+    internal struct RowBackground: View {
         
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isHighlighted) private var isHighlighted
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_Configuration) private var config
         
-        public var body: some View {
+        internal var body: some View {
             let `default` = self.config.deselectedBackground.animation(.linear(duration: 0.07))
             let modified = self.config.selectedBackground.animation(nil)
             if self.isHighlighted {

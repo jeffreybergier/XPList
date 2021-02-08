@@ -26,13 +26,13 @@
 
 import SwiftUI
 
-extension XPL {
+extension XPL1 {
     public struct List<Data: RandomAccessCollection, Row: View, Menu: View>: View
                        where Data.Element: Identifiable & Hashable
     {
      
         public typealias Selection = Set<Data.Element>
-        public typealias ContextMenu = XPL.ContextMenu<Selection, Menu>
+        public typealias ContextMenu = XPL1.ContextMenu<Selection, Menu>
         public typealias OpenAction = (Selection) -> Void
         
         private let data: Data
@@ -49,10 +49,10 @@ extension XPL {
                 LazyVStack(spacing: 0) {
                     ForEach(self.data) { item in
                         ZStack(alignment: .bottom) {
-                            XPL.RowBackground()
-                            XPL.RowSeparator()
+                            XPL1.RowBackground()
+                            XPL1.RowSeparator()
                             HStack(spacing: self.config.cellPadding.leading) {
-                                XPL.Accessory()
+                                XPL1.Accessory()
                                 self.content(item)
                             }
                             .padding(self.config.cellPadding)
@@ -68,7 +68,7 @@ extension XPL {
                 }
             }
             .modifier(OnChange(of: \.XPL_isEditMode, action: { _ in self.selection.removeAll() }))
-            .modifier(XPL.EditMode())
+            .modifier(XPL1.EditMode())
         }
         
         /// Complex logic for context menu selection

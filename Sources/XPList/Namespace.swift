@@ -26,46 +26,44 @@
 
 import SwiftUI
 
-public enum XPL {
-    public enum SelectionTrigger { }
-}
+public enum XPL1 { }
 
-extension XPL {
+extension XPL1 {
     public struct SelectedKey: EnvironmentKey {
-        public static let defaultValue: Bool = false
-    }
-    public struct HighlightedKey: EnvironmentKey {
         public static let defaultValue: Bool = false
     }
     public struct EditModeKey: EnvironmentKey {
         public static let defaultValue: Bool = false
     }
     public struct ConfigurationKey: EnvironmentKey {
-        public static let defaultValue: XPL.Configuration = .default
+        public static let defaultValue: Configuration = .default
+    }
+    internal struct HighlightedKey: EnvironmentKey {
+        public static let defaultValue: Bool = false
     }
 }
 
 extension EnvironmentValues {
     public var XPL_isSelected: Bool {
-        get { self[XPL.SelectedKey.self] }
-        set { self[XPL.SelectedKey.self] = newValue }
-    }
-    public var XPL_isHighlighted: Bool {
-        get { self[XPL.HighlightedKey.self] }
-        set { self[XPL.HighlightedKey.self] = newValue }
+        get { self[XPL1.SelectedKey.self] }
+        set { self[XPL1.SelectedKey.self] = newValue }
     }
     public var XPL_isEditMode: Bool {
-        get { self[XPL.EditModeKey.self] }
-        set { self[XPL.EditModeKey.self] = newValue }
+        get { self[XPL1.EditModeKey.self] }
+        set { self[XPL1.EditModeKey.self] = newValue }
     }
-    public var XPL_Configuration: XPL.Configuration {
-        get { self[XPL.ConfigurationKey.self] }
-        set { self[XPL.ConfigurationKey.self] = newValue }
+    public var XPL_Configuration: Configuration {
+        get { self[XPL1.ConfigurationKey.self] }
+        set { self[XPL1.ConfigurationKey.self] = newValue }
+    }
+    internal var XPL_isHighlighted: Bool {
+        get { self[XPL1.HighlightedKey.self] }
+        set { self[XPL1.HighlightedKey.self] = newValue }
     }
 }
 
 extension ColorScheme {
-    var isLight: Bool {
+    internal var isLight: Bool {
         switch self {
         case .dark:
             return false

@@ -26,14 +26,14 @@
 
 import SwiftUI
 
-extension XPL {
-    public struct EditMode: ViewModifier {
+extension XPL1 {
+    internal struct EditMode: ViewModifier {
         
         #if os(iOS)
         @Environment(\.editMode) private var editMode
         #endif
         
-        public func body(content: Content) -> some View {
+        internal func body(content: Content) -> some View {
             #if os(macOS)
             return content
                 .environment(\.XPL_isEditMode, false)

@@ -26,7 +26,7 @@
 
 import SwiftUI
 
-extension XPL {
+extension XPL1 {
     public struct ContextMenu<Passthrough, Menu: View>: ViewModifier {
         
         public typealias Builder = (Passthrough) -> Menu

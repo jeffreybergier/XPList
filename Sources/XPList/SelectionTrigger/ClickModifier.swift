@@ -26,9 +26,9 @@
 
 import SwiftUI
 
-public struct ClickModifier: ViewModifier {
+internal struct ClickModifier: ViewModifier {
     
-    public typealias Action = () -> Void
+    internal typealias Action = () -> Void
     
     @State private var isHighlighted = false
     @Environment(\.XPL_isEditMode) private var isEditMode
@@ -38,10 +38,10 @@ public struct ClickModifier: ViewModifier {
     private let commandSelect: Action
     private let shiftSelect: Action
     
-    public init(open: @escaping Action,
-                singleSelect: @escaping Action,
-                commandSelect: @escaping Action,
-                shiftSelect: @escaping Action)
+    internal init(open: @escaping Action,
+                  singleSelect: @escaping Action,
+                  commandSelect: @escaping Action,
+                  shiftSelect: @escaping Action)
     {
         self.open = open
         self.singleSelect = singleSelect
@@ -49,7 +49,7 @@ public struct ClickModifier: ViewModifier {
         self.shiftSelect = shiftSelect
     }
     
-    public func body(content: Content) -> some View {
+    internal func body(content: Content) -> some View {
         content
             .environment(\.XPL_isHighlighted, self.isHighlighted)
             .modifier(If.mac(ClickReceiver(clickCount: 1, modifiers: [.command], finish: self.commandSelect)))

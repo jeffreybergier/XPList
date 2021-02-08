@@ -38,7 +38,7 @@ struct XPLList<C: RandomAccessCollection & Growable>: View where C.Element: Hash
     }
         
     var body: some View {
-        XPL.List(data: self.data.data,
+        XPL1.List(data: self.data.data,
                  selection: self.$selection,
                  open: { self.open = $0 },
                  menu: { self.menu($0) })

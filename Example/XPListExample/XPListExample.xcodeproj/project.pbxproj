@@ -93,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73AFE76225D178EF001324AE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		73C54E9925BBE5A100068F69 = {
 			isa = PBXGroup;
 			children = (
@@ -153,7 +161,7 @@
 				73C54ED825BBE6CF00068F69 /* List.swift */,
 				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
 				73C54EDA25BBE6CF00068F69 /* EditMode.swift */,
-				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
+				73AFE76225D178EF001324AE /* Shared */,
 				737BE70F25C830EB003B6A3C /* IfModifier.swift */,
 				73A6BB9525CAD1C600B95F3F /* OnChange.swift */,
 				73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */,

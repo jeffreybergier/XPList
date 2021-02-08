@@ -26,23 +26,19 @@
 
 import SwiftUI
 
-public enum Either<A, B> {
+internal enum Either<A, B> {
     case a(A), b(B)
 }
 
-public struct If<A: ViewModifier, B: ViewModifier>: ViewModifier {
-    
+internal struct If<A: ViewModifier, B: ViewModifier>: ViewModifier {
     private let value: Either<A, B>?
-    
-    public init(_ value: Either<A, B>?) {
+    internal init(_ value: Either<A, B>?) {
         self.value = value
     }
-    
-    public init(_ isTrue: Bool, _ yes: A, _ no: B) {
+    internal init(_ isTrue: Bool, _ yes: A, _ no: B) {
         self.value = isTrue ? .a(yes) : .b(no)
     }
-    
-    public func body(content: Content) -> some View {
+    internal func body(content: Content) -> some View {
         guard let value = self.value else { return AnyView(content) }
         switch value {
         case .a(let a):
@@ -54,31 +50,28 @@ public struct If<A: ViewModifier, B: ViewModifier>: ViewModifier {
 }
 
 extension If {
-    public static func mac(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
+    internal static func mac(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
         #if os(macOS)
         return If(isTrue, yes, no)
         #else
         return If(nil)
         #endif
     }
-
-    public static func mac(_ yes: A) -> If<A, B> where B == Never {
+    internal static func mac(_ yes: A) -> If<A, B> where B == Never {
         #if os(macOS)
         return If(.a(yes))
         #else
         return If(nil)
         #endif
     }
-
-    public static func iOS(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
+    internal static func iOS(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
         #if os(iOS)
         return If(isTrue, yes, no)
         #else
         return If(nil)
         #endif
     }
-
-    public static func iOS(_ yes: A) -> If<A, B> {
+    internal static func iOS(_ yes: A) -> If<A, B> {
         #if os(iOS)
         return If(.a(yes))
         #else

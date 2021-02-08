@@ -26,19 +26,19 @@
 
 import SwiftUI
 
-public struct OnChange<EV: Equatable>: ViewModifier {
+internal struct OnChange<EV: Equatable>: ViewModifier {
     
     public typealias Action = (EV) -> Void
     
     private let action: Action
     @Environment private var value: EV
     
-    init(of kp: KeyPath<EnvironmentValues, EV>, action: @escaping Action) {
+    internal init(of kp: KeyPath<EnvironmentValues, EV>, action: @escaping Action) {
         _value = .init(kp)
         self.action = action
     }
     
-    public func body(content: Content) -> some View {
+    internal func body(content: Content) -> some View {
         content.onChange(of: self.value, perform: self.action)
     }
 }
