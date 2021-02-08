@@ -1,5 +1,5 @@
 //
-//  Created by Jeffrey Bergier on 2021/01/31.
+//  Created by Jeffrey Bergier on 2021/02/08.
 //
 //  MIT License
 //
@@ -26,7 +26,7 @@
 
 import SwiftUI
 
-struct XPLList<C: RandomAccessCollection & Growable>: View where C.Element: Hashable & Identifiable {
+struct List2Demo<C: RandomAccessCollection & Growable>: View where C.Element: Hashable & Identifiable {
     
     let title: String
     @StateObject var data: Observer<C>
@@ -38,7 +38,7 @@ struct XPLList<C: RandomAccessCollection & Growable>: View where C.Element: Hash
     }
         
     var body: some View {
-        XPL1.List(data: self.data.data,
+        XPL2.List(data: self.data.data,
                  selection: self.$selection,
                  open: { self.open = $0 },
                  menu: { self.menu($0) })

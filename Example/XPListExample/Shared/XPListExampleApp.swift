@@ -32,27 +32,36 @@ struct XPListExampleApp: App {
         WindowGroup {
             NavigationView {
                 List() {
-                    Section(header: Text("SwiftUI.List Bug Example")) {
-                        NavigationLink(destination: SwiftUIList("Reference Collection 🐞", ReferenceCollection()),
-                                       label: { Text("Reference Collection 🐞") })
-                        NavigationLink(destination: SwiftUIList("Value Collection", ValueCollection()),
-                                       label: { Text("Value Collection") })
+                    // TODO: Fix macOS. It doesn't support double nested Section
+                    Section(header: Text("Bug Example")) {
+                        Section(header: Text("SwiftUI.List")) {
+                            NavigationLink(destination: SwiftUIList("Reference Collection 🐞", ReferenceCollection()),
+                                           label: { Text("Reference Collection 🐞") })
+                            NavigationLink(destination: SwiftUIList("Value Collection", ValueCollection()),
+                                           label: { Text("Value Collection") })
+                        }
+                        Section(header: Text("List1: LazyVStack")) {
+                            NavigationLink(destination: List1Demo("Reference Collection", ReferenceCollection()),
+                                           label: { Text("Reference Collection") })
+                            NavigationLink(destination: List1Demo("Value Collection", ValueCollection()),
+                                           label: { Text("Value Collection") })
+                        }
                     }
-                    Section(header: Text("XPL.List Bug Example")) {
-                        NavigationLink(destination: XPLList("Reference Collection", ReferenceCollection()),
-                                       label: { Text("Reference Collection") })
-                        NavigationLink(destination: XPLList("Value Collection", ValueCollection()),
-                                       label: { Text("Value Collection") })
-                    }
-                    Section(header: Text("XPL.List Demo")) {
-                        NavigationLink(destination: XPLList("Default Appearance", ValueCollection()),
-                                       label: { Text("Default Appearance") })
-                        NavigationLink(destination: XPLList("Halloween Appearance", ValueCollection())
-                                        .environment(\.XPL_Configuration, halloween),
-                                       label: { Text("Halloween Appearance") })
-                        NavigationLink(destination: XPLList("Space Appearance", ValueCollection())
-                                        .environment(\.XPL_Configuration, space),
-                                       label: { Text("Space Appearance") })
+                    Section(header: Text("Demo")) {
+                        Section(header: Text("List1: LazyVStack")) {
+                            NavigationLink(destination: List1Demo("Default Appearance", ValueCollection()),
+                                           label: { Text("Default Appearance") })
+                            NavigationLink(destination: List1Demo("Halloween Appearance", ValueCollection())
+                                            .environment(\.XPL_Configuration, halloween),
+                                           label: { Text("Halloween Appearance") })
+                            NavigationLink(destination: List1Demo("Space Appearance", ValueCollection())
+                                            .environment(\.XPL_Configuration, space),
+                                           label: { Text("Space Appearance") })
+                        }
+                        Section(header: Text("List2: SwiftUI.List")) {
+                            NavigationLink(destination: List1Demo("Default Appearance", ValueCollection()),
+                                           label: { Text("Default Appearance") })
+                        }
                     }
                 }
                 .listStyle(SidebarListStyle())
