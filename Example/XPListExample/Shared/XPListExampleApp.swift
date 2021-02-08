@@ -57,6 +57,8 @@ struct XPListExampleApp: App {
                     Section(header: Text("Demo: List2: SwiftUI.List")) {
                         NavigationLink(destination: List2Demo("Default Appearance", ValueCollection()),
                                        label: { Text("Default Appearance") })
+                        NavigationLink(destination: List2Demo("Reference Collection 🐞", ReferenceCollection()),
+                                       label: { Text("Reference Collection 🐞") })
                     }
                 }
                 .listStyle(SidebarListStyle())
