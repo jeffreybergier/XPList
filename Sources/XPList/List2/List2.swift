@@ -50,7 +50,7 @@ extension XPL2 {
             { item in
                 self.content(item)
                     .contentShape(Rectangle())
-                    .modifier(OpenTrigger { self.open(item) })
+                    .modifier(ClickReceiver(clickCount: 2, finish: { self.open(item) }))
                     .modifier(ContextMenu(self.menu(item),
                                           self.menuContent))
                     .environment(\.XPL_isSelected, self.selection.contains(item))

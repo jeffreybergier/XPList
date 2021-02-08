@@ -25,8 +25,6 @@
 		737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
 		73A6BB9625CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
 		73A6BB9725CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
-		73AFE77625D17BF0001324AE /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77025D17BF0001324AE /* OpenTrigger.swift */; };
-		73AFE77725D17BF0001324AE /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77025D17BF0001324AE /* OpenTrigger.swift */; };
 		73AFE77C25D17BF0001324AE /* List2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77325D17BF0001324AE /* List2.swift */; };
 		73AFE77D25D17BF0001324AE /* List2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77325D17BF0001324AE /* List2.swift */; };
 		73AFE79325D1801F001324AE /* List2Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE79225D1801F001324AE /* List2Demo.swift */; };
@@ -64,7 +62,6 @@
 		737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_iOS.swift; sourceTree = "<group>"; };
 		737BE72825C98034003B6A3C /* ClickModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickModifier.swift; sourceTree = "<group>"; };
 		73A6BB9525CAD1C600B95F3F /* OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChange.swift; sourceTree = "<group>"; };
-		73AFE77025D17BF0001324AE /* OpenTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTrigger.swift; sourceTree = "<group>"; };
 		73AFE77325D17BF0001324AE /* List2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List2.swift; sourceTree = "<group>"; };
 		73AFE79225D1801F001324AE /* List2Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List2Demo.swift; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
@@ -135,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				73AFE77325D17BF0001324AE /* List2.swift */,
-				73AFE77025D17BF0001324AE /* OpenTrigger.swift */,
 			);
 			path = List2;
 			sourceTree = "<group>";
@@ -313,7 +309,6 @@
 				737A00D725C050B90049B763 /* Shared.swift in Sources */,
 				73AFE79325D1801F001324AE /* List2Demo.swift in Sources */,
 				73AFE77C25D17BF0001324AE /* List2.swift in Sources */,
-				73AFE77625D17BF0001324AE /* OpenTrigger.swift in Sources */,
 				73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				737BE71D25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
 				73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */,
@@ -342,7 +337,6 @@
 				737A00D825C050B90049B763 /* Shared.swift in Sources */,
 				73AFE79425D1801F001324AE /* List2Demo.swift in Sources */,
 				73AFE77D25D17BF0001324AE /* List2.swift in Sources */,
-				73AFE77725D17BF0001324AE /* OpenTrigger.swift in Sources */,
 				73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				737BE71E25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
 				73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */,
