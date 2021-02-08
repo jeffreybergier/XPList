@@ -32,36 +32,31 @@ struct XPListExampleApp: App {
         WindowGroup {
             NavigationView {
                 List() {
-                    // TODO: Fix macOS. It doesn't support double nested Section
-                    Section(header: Text("Bug Example")) {
-                        Section(header: Text("SwiftUI.List")) {
-                            NavigationLink(destination: SwiftUIList("Reference Collection 🐞", ReferenceCollection()),
-                                           label: { Text("Reference Collection 🐞") })
-                            NavigationLink(destination: SwiftUIList("Value Collection", ValueCollection()),
-                                           label: { Text("Value Collection") })
-                        }
-                        Section(header: Text("List1: LazyVStack")) {
-                            NavigationLink(destination: List1Demo("Reference Collection", ReferenceCollection()),
-                                           label: { Text("Reference Collection") })
-                            NavigationLink(destination: List1Demo("Value Collection", ValueCollection()),
-                                           label: { Text("Value Collection") })
-                        }
+                    Section(header: Text("Bug: SwiftUI.List")) {
+                        NavigationLink(destination: SwiftUIList("Reference Collection 🐞", ReferenceCollection()),
+                                       label: { Text("Reference Collection 🐞") })
+                        NavigationLink(destination: SwiftUIList("Value Collection", ValueCollection()),
+                                       label: { Text("Value Collection") })
                     }
-                    Section(header: Text("Demo")) {
-                        Section(header: Text("List1: LazyVStack")) {
-                            NavigationLink(destination: List1Demo("Default Appearance", ValueCollection()),
-                                           label: { Text("Default Appearance") })
-                            NavigationLink(destination: List1Demo("Halloween Appearance", ValueCollection())
-                                            .environment(\.XPL_Configuration, halloween),
-                                           label: { Text("Halloween Appearance") })
-                            NavigationLink(destination: List1Demo("Space Appearance", ValueCollection())
-                                            .environment(\.XPL_Configuration, space),
-                                           label: { Text("Space Appearance") })
-                        }
-                        Section(header: Text("List2: SwiftUI.List")) {
-                            NavigationLink(destination: List1Demo("Default Appearance", ValueCollection()),
-                                           label: { Text("Default Appearance") })
-                        }
+                    Section(header: Text("No Bug: List1: LazyVStack")) {
+                        NavigationLink(destination: List1Demo("Reference Collection", ReferenceCollection()),
+                                       label: { Text("Reference Collection") })
+                        NavigationLink(destination: List1Demo("Value Collection", ValueCollection()),
+                                       label: { Text("Value Collection") })
+                    }
+                    Section(header: Text("Demo: List1: LazyVStack")) {
+                        NavigationLink(destination: List1Demo("Default Appearance", ValueCollection()),
+                                       label: { Text("Default Appearance") })
+                        NavigationLink(destination: List1Demo("Halloween Appearance", ValueCollection())
+                                        .environment(\.XPL_Configuration, halloween),
+                                       label: { Text("Halloween Appearance") })
+                        NavigationLink(destination: List1Demo("Space Appearance", ValueCollection())
+                                        .environment(\.XPL_Configuration, space),
+                                       label: { Text("Space Appearance") })
+                    }
+                    Section(header: Text("Demo: List2: SwiftUI.List")) {
+                        NavigationLink(destination: List2Demo("Default Appearance", ValueCollection()),
+                                       label: { Text("Default Appearance") })
                     }
                 }
                 .listStyle(SidebarListStyle())
