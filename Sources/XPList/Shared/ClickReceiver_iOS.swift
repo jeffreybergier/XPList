@@ -34,7 +34,6 @@ internal struct _ClickReceiver: UIViewRepresentable {
     let modifiers: EventModifiers
     let startAction: ClickReceiver.Action
     let finishAction: ClickReceiver.Action
-    typealias UIViewType = UIView
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false

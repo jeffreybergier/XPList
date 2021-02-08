@@ -34,7 +34,6 @@ internal struct _ClickReceiver: NSViewRepresentable {
     let modifiers: EventModifiers
     let startAction: ClickReceiver.Action
     let finishAction: ClickReceiver.Action
-    typealias NSViewType = __ClickReceiver
     func makeNSView(context: Context) -> __ClickReceiver {
         let view = __ClickReceiver()
         view.wantsLayer = true
@@ -60,14 +59,12 @@ internal class __ClickReceiver: NSView {
     override func mouseDown(with event: NSEvent) {
         // If the event can't possibly ever meet our criteria, call super
         guard
-            event.clickCount <= self.clickCount,
+            event.clickCount == self.clickCount,
             event.modifierFlags.intersection(.deviceIndependentFlagsMask) == self.modifiers.nativeValue
         else {
             super.mouseDown(with: event)
             return
         }
-        // If the event exactly matches our criteria, call our closure
-        guard event.clickCount == self.clickCount else { return }
         self.startAction()
     }
     override func mouseUp(with event: NSEvent) {

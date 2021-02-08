@@ -66,7 +66,7 @@ extension XPL2 {
         {
             #if DEBUG
             if Mirror(reflecting: data).displayStyle == .class {
-                print("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
+                NSLog("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
             }
             #endif
             self.data = data
@@ -84,7 +84,7 @@ extension XPL2 {
         {
             #if DEBUG
             if Mirror(reflecting: data).displayStyle == .class {
-                print("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
+                NSLog("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
             }
             #endif
             self.data = data
@@ -105,6 +105,14 @@ extension XPL2 {
             #if os(macOS)
             if self.selection.contains(item) {
                 openAction(self.selection)
+                // TODO: Remove hack
+                // This prevents List from changing selection
+                // by letting the first click of the double click
+                // gesture hit it
+//                let selection = self.selection
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.41) {
+//                    self.selection = selection
+//                }
             } else {
                 self.selection.removeAll()
                 openAction([item])
