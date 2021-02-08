@@ -26,6 +26,7 @@
 
 import SwiftUI
 
+public enum XPL2 { }
 public enum XPL1 { }
 
 extension XPL1 {

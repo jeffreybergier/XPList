@@ -25,6 +25,10 @@
 		737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
 		73A6BB9625CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
 		73A6BB9725CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
+		73AFE77625D17BF0001324AE /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77025D17BF0001324AE /* OpenTrigger.swift */; };
+		73AFE77725D17BF0001324AE /* OpenTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77025D17BF0001324AE /* OpenTrigger.swift */; };
+		73AFE77C25D17BF0001324AE /* List2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77325D17BF0001324AE /* List2.swift */; };
+		73AFE77D25D17BF0001324AE /* List2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77325D17BF0001324AE /* List2.swift */; };
 		73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
@@ -35,8 +39,8 @@
 		73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED625BBE6CF00068F69 /* RowSeparator.swift */; };
 		73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED725BBE6CF00068F69 /* Namespace.swift */; };
 		73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED725BBE6CF00068F69 /* Namespace.swift */; };
-		73C54EE825BBE6CF00068F69 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED825BBE6CF00068F69 /* List.swift */; };
-		73C54EE925BBE6CF00068F69 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED825BBE6CF00068F69 /* List.swift */; };
+		73C54EE825BBE6CF00068F69 /* List1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED825BBE6CF00068F69 /* List1.swift */; };
+		73C54EE925BBE6CF00068F69 /* List1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED825BBE6CF00068F69 /* List1.swift */; };
 		73C54EEA25BBE6CF00068F69 /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED925BBE6CF00068F69 /* Accessory.swift */; };
 		73C54EEB25BBE6CF00068F69 /* Accessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED925BBE6CF00068F69 /* Accessory.swift */; };
 		73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54EDA25BBE6CF00068F69 /* EditMode.swift */; };
@@ -58,6 +62,8 @@
 		737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_iOS.swift; sourceTree = "<group>"; };
 		737BE72825C98034003B6A3C /* ClickModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickModifier.swift; sourceTree = "<group>"; };
 		73A6BB9525CAD1C600B95F3F /* OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChange.swift; sourceTree = "<group>"; };
+		73AFE77025D17BF0001324AE /* OpenTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTrigger.swift; sourceTree = "<group>"; };
+		73AFE77325D17BF0001324AE /* List2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List2.swift; sourceTree = "<group>"; };
 		73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPListExampleApp.swift; sourceTree = "<group>"; };
 		73C54EA625BBE5A100068F69 /* XPListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C54EA925BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,7 +74,7 @@
 		73C54ED425BBE6CF00068F69 /* ContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
 		73C54ED625BBE6CF00068F69 /* RowSeparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSeparator.swift; sourceTree = "<group>"; };
 		73C54ED725BBE6CF00068F69 /* Namespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
-		73C54ED825BBE6CF00068F69 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		73C54ED825BBE6CF00068F69 /* List1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List1.swift; sourceTree = "<group>"; };
 		73C54ED925BBE6CF00068F69 /* Accessory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessory.swift; sourceTree = "<group>"; };
 		73C54EDA25BBE6CF00068F69 /* EditMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMode.swift; sourceTree = "<group>"; };
 		73C54EDD25BBE6CF00068F69 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 		73AFE76225D178EF001324AE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				73C54ED425BBE6CF00068F69 /* ContextMenu.swift */,
 				73C54ED725BBE6CF00068F69 /* Namespace.swift */,
 				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
 				737BE70425C801ED003B6A3C /* ClickReceiver.swift */,
@@ -113,13 +120,21 @@
 			children = (
 				73C54ED325BBE6CF00068F69 /* RowBackground.swift */,
 				73E4ED5125BC26B600409486 /* ForegroundColor.swift */,
-				73C54ED425BBE6CF00068F69 /* ContextMenu.swift */,
 				73C54ED625BBE6CF00068F69 /* RowSeparator.swift */,
-				73C54ED825BBE6CF00068F69 /* List.swift */,
+				73C54ED825BBE6CF00068F69 /* List1.swift */,
 				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
 				737BE72825C98034003B6A3C /* ClickModifier.swift */,
 			);
 			path = List1;
+			sourceTree = "<group>";
+		};
+		73AFE76C25D17B6C001324AE /* List2 */ = {
+			isa = PBXGroup;
+			children = (
+				73AFE77325D17BF0001324AE /* List2.swift */,
+				73AFE77025D17BF0001324AE /* OpenTrigger.swift */,
+			);
+			path = List2;
 			sourceTree = "<group>";
 		};
 		73C54E9925BBE5A100068F69 = {
@@ -174,6 +189,7 @@
 		73C54ED225BBE6CF00068F69 /* XPList */ = {
 			isa = PBXGroup;
 			children = (
+				73AFE76C25D17B6C001324AE /* List2 */,
 				73AFE76925D17B4A001324AE /* List1 */,
 				73AFE76225D178EF001324AE /* Shared */,
 			);
@@ -282,7 +298,7 @@
 				737BE72925C98034003B6A3C /* ClickModifier.swift in Sources */,
 				733BEAC425C6535D003E70CB /* SwiftUIList.swift in Sources */,
 				73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */,
-				73C54EE825BBE6CF00068F69 /* List.swift in Sources */,
+				73C54EE825BBE6CF00068F69 /* List1.swift in Sources */,
 				73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE025BBE6CF00068F69 /* ContextMenu.swift in Sources */,
 				737BE70525C801ED003B6A3C /* ClickReceiver.swift in Sources */,
@@ -291,6 +307,8 @@
 				733BEACF25C65F9E003E70CB /* XPLList.swift in Sources */,
 				73A6BB9625CAD1C600B95F3F /* OnChange.swift in Sources */,
 				737A00D725C050B90049B763 /* Shared.swift in Sources */,
+				73AFE77C25D17BF0001324AE /* List2.swift in Sources */,
+				73AFE77625D17BF0001324AE /* OpenTrigger.swift in Sources */,
 				73C54EB225BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				737BE71D25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
 				73C54EEC25BBE6CF00068F69 /* EditMode.swift in Sources */,
@@ -308,7 +326,7 @@
 				737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */,
 				733BEAC525C6535D003E70CB /* SwiftUIList.swift in Sources */,
 				73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */,
-				73C54EE925BBE6CF00068F69 /* List.swift in Sources */,
+				73C54EE925BBE6CF00068F69 /* List1.swift in Sources */,
 				73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */,
 				73C54EE125BBE6CF00068F69 /* ContextMenu.swift in Sources */,
 				737BE70625C801ED003B6A3C /* ClickReceiver.swift in Sources */,
@@ -317,6 +335,8 @@
 				733BEAD025C65F9E003E70CB /* XPLList.swift in Sources */,
 				73A6BB9725CAD1C600B95F3F /* OnChange.swift in Sources */,
 				737A00D825C050B90049B763 /* Shared.swift in Sources */,
+				73AFE77D25D17BF0001324AE /* List2.swift in Sources */,
+				73AFE77725D17BF0001324AE /* OpenTrigger.swift in Sources */,
 				73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */,
 				737BE71E25C83812003B6A3C /* ClickReceiver_mac.swift in Sources */,
 				73C54EED25BBE6CF00068F69 /* EditMode.swift in Sources */,

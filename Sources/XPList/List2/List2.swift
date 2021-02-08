@@ -26,49 +26,92 @@
 
 import SwiftUI
 
-extension XPL1 {
+extension XPL2 {
     public struct List<Data: RandomAccessCollection, Row: View, Menu: View>: View
                        where Data.Element: Identifiable & Hashable
     {
      
         public typealias Selection = Set<Data.Element>
-        public typealias ContextMenu = XPL1.ContextMenu<Selection, Menu>
+        public typealias CTXMenu = ContextMenu<Selection, Menu>
         public typealias OpenAction = (Selection) -> Void
         
         private let data: Data
         private let content: (Data.Element) -> Row
         private let openAction: OpenAction?
-        private let menuContent: ContextMenu.Builder?
+        private let menuContent: CTXMenu.Builder?
         
         @Binding private var selection: Selection
         @Environment(\.colorScheme) private var colorScheme
-        @Environment(\.XPL_Configuration) private var config
 
         public var body: some View {
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach(self.data) { item in
-                        ZStack(alignment: .bottom) {
-                            XPL1.RowBackground()
-                            XPL1.RowSeparator()
-                            HStack(spacing: self.config.cellPadding.leading) {
-                                XPL1.Accessory()
-                                self.content(item)
-                            }
-                            .padding(self.config.cellPadding)
-                        }
-                        .modifier(ForegroundColor())
-                        .modifier(ClickModifier(open: { self.open(item) },
-                                                singleSelect: { self.singleSelect(item) },
-                                                commandSelect: { self.commandSelect(item) },
-                                                shiftSelect: { self.shiftSelect(item) }))
-                        .modifier(ContextMenu(self.menu(item), self.menuContent))
-                        .environment(\.XPL_isSelected, self.selection.contains(item))
-                    }
-                }
+            SwiftUI.List(self.data,
+                         id: \.self,
+                         selection: self.$selection)
+            { item in
+                self.content(item)
+                    .contentShape(Rectangle())
+                    .modifier(OpenTrigger { self.open(item) })
+                    .modifier(ContextMenu(self.menu(item),
+                                          self.menuContent))
+                    .environment(\.XPL_isSelected, self.selection.contains(item))
             }
-            .modifier(OnChange(of: \.XPL_isEditMode, action: { _ in self.selection.removeAll() }))
-            .modifier(XPL1.EditMode())
+            .modifier(EditMode())
+        }
+        
+        public init(data: Data,
+                    selection: Binding<Selection>? = nil,
+                    open: OpenAction? = nil,
+                    @ViewBuilder menu: @escaping CTXMenu.Builder,
+                    @ViewBuilder content: @escaping (Data.Element) -> Row)
+        {
+            #if DEBUG
+            if Mirror(reflecting: data).displayStyle == .class {
+                print("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
+            }
+            #endif
+            self.data = data
+            self.content = content
+            self.openAction = open
+            self.menuContent = menu
+            _selection = selection ?? Binding.constant([])
+        }
+        
+        public init(data: Data,
+                    selection: Binding<Selection>? = nil,
+                    open: OpenAction? = nil,
+                    @ViewBuilder content: @escaping (Data.Element) -> Row)
+                    where Menu == Never
+        {
+            #if DEBUG
+            if Mirror(reflecting: data).displayStyle == .class {
+                print("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
+            }
+            #endif
+            self.data = data
+            self.content = content
+            self.openAction = open
+            self.menuContent = nil
+            _selection = selection ?? Binding.constant([])
+        }
+        
+        /// Complex logic applies to macOS.
+        /// If they double click on a row that is selected (and other rows are selected)
+        /// then it should open all the selected rows.
+        /// If they double click on a row that is not selected but other rows are selected
+        /// then the selection is cleared and only the double clicked item is opened
+        /// On iOS, only the item that is tapped is opened, no matter the selection
+        private func open(_ item: Data.Element) {
+            guard let openAction = self.openAction else { return }
+            #if os(macOS)
+            if self.selection.contains(item) {
+                openAction(self.selection)
+            } else {
+                self.selection.removeAll()
+                openAction([item])
+            }
+            #else
+            openAction([item])
+            #endif
         }
         
         /// Complex logic for context menu selection
@@ -84,73 +127,6 @@ extension XPL1 {
             } else {
                 return [item]
             }
-        }
-        
-        /// Complex logic applies to macOS.
-        /// If they double click on a row that is selected (and other rows are selected)
-        /// then it should open all the selected rows.
-        /// If they double click on a row that is not selected but other rows are selected
-        /// then the selection is cleared and only the double clicked item is opened
-        /// On iOS, only the item that is tapped is opened, no matter the selection
-        private func open(_ item: Data.Element) {
-            guard let openAction = self.openAction else { return }
-            #if os(macOS)
-            if self.selection.contains(item) {
-                openAction(self.selection)
-            } else {
-                self.selection = [item]
-                openAction([item])
-            }
-            #else
-            openAction([item])
-            #endif
-        }
-        
-        public func singleSelect(_ item: Data.Element) {
-            #if os(macOS)
-            guard self.selection.contains(item) == false else { return }
-            self.selection = [item]
-            #else
-            self.commandSelect(item)
-            #endif
-        }
-        
-        public func commandSelect(_ item: Data.Element) {
-            if self.selection.contains(item) {
-                self.selection.remove(item)
-            } else {
-                self.selection.insert(item)
-            }
-        }
-        
-        public func shiftSelect(_ item: Data.Element) {
-            NSLog("Shift Selection Not Implemented")
-        }
-        
-        public init(data: Data,
-                    selection: Binding<Selection>? = nil,
-                    open: OpenAction? = nil,
-                    @ViewBuilder menu: @escaping ContextMenu.Builder,
-                    @ViewBuilder content: @escaping (Data.Element) -> Row)
-        {
-            self.data = data
-            self.content = content
-            self.openAction = open
-            self.menuContent = menu
-            _selection = selection ?? Binding.constant([])
-        }
-        
-        public init(data: Data,
-                    selection: Binding<Selection>? = nil,
-                    open: OpenAction? = nil,
-                    @ViewBuilder content: @escaping (Data.Element) -> Row)
-                    where Menu == Never
-        {
-            self.data = data
-            self.content = content
-            self.openAction = open
-            self.menuContent = nil
-            _selection = selection ?? Binding.constant([])
         }
     }
 }

@@ -26,27 +26,25 @@
 
 import SwiftUI
 
-extension XPL1 {
-    public struct ContextMenu<Passthrough, Menu: View>: ViewModifier {
-        
-        public typealias Builder = (Passthrough) -> Menu
-        
-        private let builder: Builder?
-        private let passthrough: Passthrough
-        
-        public init(_ passthrough: Passthrough,
-                    _ builder: Builder?)
-        {
-            self.passthrough = passthrough
-            self.builder = builder
-        }
-        
-        public func body(content: Content) -> some View {
-            guard let builder = self.builder else { return AnyView(content) }
-            return AnyView(
-                content
-                    .contextMenu(menuItems: { builder(self.passthrough) })
-            )
-        }
+public struct ContextMenu<Passthrough, Menu: View>: ViewModifier {
+    
+    public typealias Builder = (Passthrough) -> Menu
+    
+    private let builder: Builder?
+    private let passthrough: Passthrough
+    
+    public init(_ passthrough: Passthrough,
+                _ builder: Builder?)
+    {
+        self.passthrough = passthrough
+        self.builder = builder
+    }
+    
+    public func body(content: Content) -> some View {
+        guard let builder = self.builder else { return AnyView(content) }
+        return AnyView(
+            content
+                .contextMenu(menuItems: { builder(self.passthrough) })
+        )
     }
 }

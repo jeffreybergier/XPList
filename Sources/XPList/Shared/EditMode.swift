@@ -26,21 +26,19 @@
 
 import SwiftUI
 
-extension XPL1 {
-    public struct EditMode: ViewModifier {
-        
-        #if os(iOS)
-        @Environment(\.editMode) private var editMode
+public struct EditMode: ViewModifier {
+    
+    #if os(iOS)
+    @Environment(\.editMode) private var editMode
+    #endif
+    
+    public func body(content: Content) -> some View {
+        #if os(macOS)
+        return content
+            .environment(\.XPL_isEditMode, false)
+        #else
+        return content
+            .environment(\.XPL_isEditMode, (self.editMode?.wrappedValue.isEditing ?? false))
         #endif
-        
-        public func body(content: Content) -> some View {
-            #if os(macOS)
-            return content
-                .environment(\.XPL_isEditMode, false)
-            #else
-            return content
-                .environment(\.XPL_isEditMode, (self.editMode?.wrappedValue.isEditing ?? false))
-            #endif
-        }
     }
 }
