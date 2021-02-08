@@ -26,7 +26,7 @@
 
 import SwiftUI
 
-internal struct ClickReceiver: ViewModifier {
+public struct ClickReceiver: ViewModifier {
     public typealias Action = () -> Void
     private let clickCount: Int
     private let modifiers: EventModifiers
@@ -39,10 +39,10 @@ internal struct ClickReceiver: ViewModifier {
     ///   - modifiers: keyboard modifiers that need to be held down to fire
     ///   - start: ocurs on mouseDown. Use for highlighting
     ///   - finish: occurs on mouseUp. Use for triggering main action
-    internal init(clickCount: Int = 2,
-                  modifiers: EventModifiers = [],
-                  start: @escaping Action = {},
-                  finish: @escaping Action = {})
+    public init(clickCount: Int = 2,
+                modifiers: EventModifiers = [],
+                start: @escaping Action = {},
+                finish: @escaping Action = {})
     {
         self.clickCount = clickCount
         self.modifiers = modifiers
@@ -50,7 +50,7 @@ internal struct ClickReceiver: ViewModifier {
         self.finishAction = finish
     }
     
-    internal func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ZStack {
             content
             _ClickReceiver(clickCount: self.clickCount,

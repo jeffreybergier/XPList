@@ -96,9 +96,30 @@
 		73AFE76225D178EF001324AE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				73C54ED725BBE6CF00068F69 /* Namespace.swift */,
 				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
+				737BE70425C801ED003B6A3C /* ClickReceiver.swift */,
+				737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */,
+				737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */,
+				73C54EDA25BBE6CF00068F69 /* EditMode.swift */,
+				737BE70F25C830EB003B6A3C /* IfModifier.swift */,
+				73A6BB9525CAD1C600B95F3F /* OnChange.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		73AFE76925D17B4A001324AE /* List1 */ = {
+			isa = PBXGroup;
+			children = (
+				73C54ED325BBE6CF00068F69 /* RowBackground.swift */,
+				73E4ED5125BC26B600409486 /* ForegroundColor.swift */,
+				73C54ED425BBE6CF00068F69 /* ContextMenu.swift */,
+				73C54ED625BBE6CF00068F69 /* RowSeparator.swift */,
+				73C54ED825BBE6CF00068F69 /* List.swift */,
+				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
+				737BE72825C98034003B6A3C /* ClickModifier.swift */,
+			);
+			path = List1;
 			sourceTree = "<group>";
 		};
 		73C54E9925BBE5A100068F69 = {
@@ -153,32 +174,11 @@
 		73C54ED225BBE6CF00068F69 /* XPList */ = {
 			isa = PBXGroup;
 			children = (
-				73C54ED325BBE6CF00068F69 /* RowBackground.swift */,
-				73E4ED5125BC26B600409486 /* ForegroundColor.swift */,
-				73C54ED425BBE6CF00068F69 /* ContextMenu.swift */,
-				73C54ED625BBE6CF00068F69 /* RowSeparator.swift */,
-				73C54ED725BBE6CF00068F69 /* Namespace.swift */,
-				73C54ED825BBE6CF00068F69 /* List.swift */,
-				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
-				73C54EDA25BBE6CF00068F69 /* EditMode.swift */,
+				73AFE76925D17B4A001324AE /* List1 */,
 				73AFE76225D178EF001324AE /* Shared */,
-				737BE70F25C830EB003B6A3C /* IfModifier.swift */,
-				73A6BB9525CAD1C600B95F3F /* OnChange.swift */,
-				73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */,
 			);
 			name = XPList;
 			path = ../../../Sources/XPList;
-			sourceTree = "<group>";
-		};
-		73F8B35E25BD5EE0001A6A09 /* SelectionTrigger */ = {
-			isa = PBXGroup;
-			children = (
-				737BE72825C98034003B6A3C /* ClickModifier.swift */,
-				737BE70425C801ED003B6A3C /* ClickReceiver.swift */,
-				737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */,
-				737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */,
-			);
-			path = SelectionTrigger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
