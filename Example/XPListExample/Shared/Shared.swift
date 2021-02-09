@@ -157,7 +157,7 @@ extension ValueCollection: Growable {
     }
 }
 
-struct Menu<T: Hashable & Identifiable>: ViewModifier, InitWithSet {
+struct Menu<T: Hashable & Identifiable>: ViewModifier {
     private let selection: Set<T>
     init(_ selection: Set<T>) {
         self.selection = selection

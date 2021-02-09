@@ -41,8 +41,8 @@ struct List2Demo<C: RandomAccessCollection & Growable>: View where C.Element: Ha
     var body: some View {
         XPL2.List(data: self.data.data,
                  selection: self.$selection,
-                 menu: Menu.self,
-                 open: { self.open = $0 })
+                 open: { self.open = $0 },
+                 menu: { Menu($0) })
         { item in
             HStack {
                 Text(String(describing: item))

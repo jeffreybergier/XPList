@@ -29,18 +29,18 @@ import SwiftUI
 extension XPL1 {
     public struct List<Data: RandomAccessCollection,
                        Row: View,
-                       Menu: ViewModifier & InitWithSet>: View
-                 where Data.Element: Identifiable,
-                       Menu.Element == Data.Element
+                       Menu: ViewModifier>: View
+                 where Data.Element: Identifiable & Hashable
     {
      
         public typealias Selection = Set<Data.Element>
         public typealias OpenAction = (Selection) -> Void
+        public typealias MenuBuilder = (Selection) -> Menu
         
         private let data: Data
         private let content: (Data.Element) -> Row
         private let openAction: OpenAction?
-        private let menuModifier: Menu.Type?
+        private let menuModifier: MenuBuilder?
 
         @Binding private var selection: Selection
         @Environment(\.colorScheme) private var colorScheme
@@ -64,7 +64,7 @@ extension XPL1 {
                                                 singleSelect: { self.singleSelect(item) },
                                                 commandSelect: { self.commandSelect(item) },
                                                 shiftSelect: { self.shiftSelect(item) }))
-                        .modifier(If.some(self.menuModifier?.init(self.menu(item))))
+                        .modifier(If.some(self.menuModifier?(self.menu(item))))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                     }
                 }
@@ -131,8 +131,8 @@ extension XPL1 {
         
         public init(data: Data,
                     selection: Binding<Selection>? = nil,
-                    menu: Menu.Type,
                     open: OpenAction? = nil,
+                    menu: @escaping MenuBuilder,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
         {
             #if DEBUG
@@ -150,7 +150,7 @@ extension XPL1 {
         public init(data: Data,
                     selection: Binding<Selection>? = nil,
                     open: OpenAction? = nil,
-                    @ViewBuilder content: @escaping (Data.Element) -> Row) where Menu == Impossible<Data.Element>
+                    @ViewBuilder content: @escaping (Data.Element) -> Row) where Menu == Never
         {
             #if DEBUG
             if Mirror(reflecting: data).displayStyle == .class {

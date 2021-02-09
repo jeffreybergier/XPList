@@ -63,20 +63,6 @@ extension EnvironmentValues {
     }
 }
 
-public protocol InitWithSet {
-    associatedtype Element: Hashable
-    init(_: Set<Element>)
-}
-
-// Seems not to be possible to do this with Never
-// Used so List can be initalized with no ContextMenu
-public enum Impossible<T: Hashable>: InitWithSet, ViewModifier {
-    public init(_: Set<T>) { fatalError() }
-    public func body(content: Content) -> some View {
-        content
-    }
-}
-
 extension ColorScheme {
     internal var isLight: Bool {
         switch self {
