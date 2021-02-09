@@ -131,7 +131,7 @@ extension XPL1 {
         
         public init(data: Data,
                     selection: Binding<Selection>? = nil,
-                    menu: Menu.Type?,
+                    menu: Menu.Type,
                     open: OpenAction? = nil,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
         {
@@ -144,6 +144,23 @@ extension XPL1 {
             self.content = content
             self.openAction = open
             self.menuModifier = menu
+            _selection = selection ?? Binding.constant([])
+        }
+        
+        public init(data: Data,
+                    selection: Binding<Selection>? = nil,
+                    open: OpenAction? = nil,
+                    @ViewBuilder content: @escaping (Data.Element) -> Row) where Menu == Impossible<Data.Element>
+        {
+            #if DEBUG
+            if Mirror(reflecting: data).displayStyle == .class {
+                NSLog("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
+            }
+            #endif
+            self.data = data
+            self.content = content
+            self.openAction = open
+            self.menuModifier = nil
             _selection = selection ?? Binding.constant([])
         }
     }
