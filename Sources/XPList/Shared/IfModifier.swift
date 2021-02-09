@@ -78,6 +78,10 @@ extension If {
         return If(nil)
         #endif
     }
+    internal static func some(_ some: A?) -> If<A,B> where B == Never {
+        guard let some = some else { return If(nil) }
+        return If(.a(some))
+    }
 }
 
 extension Never: ViewModifier {}

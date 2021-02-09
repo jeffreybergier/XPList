@@ -31,6 +31,7 @@ struct List2Demo<C: RandomAccessCollection & Growable>: View where C.Element: Ha
     let title: String
     @StateObject var data: Observer<C>
     @State private var selection: Set<C.Element> = []
+    @State private var open: Set<C.Element>?
     
     init(_ title: String, _ collection: C) {
         self.title = title
@@ -40,8 +41,8 @@ struct List2Demo<C: RandomAccessCollection & Growable>: View where C.Element: Ha
     var body: some View {
         XPL2.List(data: self.data.data,
                  selection: self.$selection,
-                 open: { self.open = $0 },
-                 menu: { self.menu($0) })
+                 menu: Menu.self,
+                 open: { self.open = $0 })
         { item in
             HStack {
                 Text(String(describing: item))
@@ -54,14 +55,5 @@ struct List2Demo<C: RandomAccessCollection & Growable>: View where C.Element: Ha
         .navigationTitle(self.title)
         .modifier(Toolbar2(shrink: self.data.shrink, grow: self.data.grow))
         .modifier(Open(open: self.$open))
-    }
-    
-    /// MARK: Open and Menu
-    @State private var open: Set<C.Element>?
-    @ViewBuilder private func menu(_ items: Set<C.Element>) -> some View {
-        Text("\(items.count) item(s)")
-        ForEach(Array(items)) {
-            Text(String(describing: $0))
-        }
     }
 }

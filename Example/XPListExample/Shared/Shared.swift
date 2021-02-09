@@ -156,3 +156,18 @@ extension ValueCollection: Growable {
         self.endIndex = 10
     }
 }
+
+struct Menu<T: Hashable & Identifiable>: ViewModifier, InitWithSet {
+    private let selection: Set<T>
+    init(_ selection: Set<T>) {
+        self.selection = selection
+    }
+    func body(content: Content) -> some View {
+        content.contextMenu {
+            Text("\(self.selection.count) item(s)")
+            ForEach(Array(self.selection)) {
+                Text(String(describing: $0))
+            }
+        }
+    }
+}

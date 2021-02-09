@@ -27,18 +27,19 @@
 import SwiftUI
 
 extension XPL2 {
-    public struct List<Data: RandomAccessCollection, Row: View, Menu: View>: View
-                       where Data.Element: Identifiable & Hashable
+    public struct List<Data: RandomAccessCollection,
+                       Row: View, Menu: ViewModifier & InitWithSet>: View
+                       where Data.Element: Identifiable,
+                             Menu.Element == Data.Element
     {
      
         public typealias Selection = Set<Data.Element>
-        public typealias CTXMenu = ContextMenu<Selection, Menu>
         public typealias OpenAction = (Selection) -> Void
         
         private let data: Data
         private let content: (Data.Element) -> Row
         private let openAction: OpenAction?
-        private let menuContent: CTXMenu.Builder?
+        private let menuModifier: Menu.Type?
         
         @Binding private var selection: Selection
         @Environment(\.colorScheme) private var colorScheme
@@ -51,8 +52,7 @@ extension XPL2 {
                 self.content(item)
                     .contentShape(Rectangle())
                     .modifier(ClickReceiver(clickCount: 2, finish: { self.open(item) }))
-                    .modifier(ContextMenu(self.menu(item),
-                                          self.menuContent))
+                    .modifier(If.some(self.menuModifier?.init(self.menu(item))))
                     .environment(\.XPL_isSelected, self.selection.contains(item))
             }
             .modifier(EditMode())
@@ -60,8 +60,8 @@ extension XPL2 {
         
         public init(data: Data,
                     selection: Binding<Selection>? = nil,
+                    menu: Menu.Type?,
                     open: OpenAction? = nil,
-                    @ViewBuilder menu: @escaping CTXMenu.Builder,
                     @ViewBuilder content: @escaping (Data.Element) -> Row)
         {
             #if DEBUG
@@ -72,25 +72,7 @@ extension XPL2 {
             self.data = data
             self.content = content
             self.openAction = open
-            self.menuContent = menu
-            _selection = selection ?? Binding.constant([])
-        }
-        
-        public init(data: Data,
-                    selection: Binding<Selection>? = nil,
-                    open: OpenAction? = nil,
-                    @ViewBuilder content: @escaping (Data.Element) -> Row)
-                    where Menu == Never
-        {
-            #if DEBUG
-            if Mirror(reflecting: data).displayStyle == .class {
-                NSLog("WARNING: SwiftUI crashes when using a data source that is a class instead of a struct: FB8977767")
-            }
-            #endif
-            self.data = data
-            self.content = content
-            self.openAction = open
-            self.menuContent = nil
+            self.menuModifier = menu
             _selection = selection ?? Binding.constant([])
         }
         

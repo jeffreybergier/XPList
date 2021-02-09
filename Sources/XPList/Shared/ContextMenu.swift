@@ -48,3 +48,8 @@ public struct ContextMenu<Passthrough, Menu: View>: ViewModifier {
         )
     }
 }
+
+public protocol InitWithSet {
+    associatedtype Element: Hashable
+    init(_: Set<Element>)
+}
