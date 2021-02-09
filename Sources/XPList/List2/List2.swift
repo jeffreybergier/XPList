@@ -28,9 +28,10 @@ import SwiftUI
 
 extension XPL2 {
     public struct List<Data: RandomAccessCollection,
-                       Row: View, Menu: ViewModifier & InitWithSet>: View
-                       where Data.Element: Identifiable,
-                             Menu.Element == Data.Element
+                       Row: View,
+                       Menu: ViewModifier & InitWithSet>: View
+                 where Data.Element: Identifiable,
+                       Menu.Element == Data.Element
     {
      
         public typealias Selection = Set<Data.Element>
