@@ -33,8 +33,6 @@
 		73C54EB325BBE5A100068F69 /* XPListExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54E9F25BBE5A100068F69 /* XPListExampleApp.swift */; };
 		73C54EDE25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
 		73C54EDF25BBE6CF00068F69 /* RowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED325BBE6CF00068F69 /* RowBackground.swift */; };
-		73C54EE025BBE6CF00068F69 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED425BBE6CF00068F69 /* ContextMenu.swift */; };
-		73C54EE125BBE6CF00068F69 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED425BBE6CF00068F69 /* ContextMenu.swift */; };
 		73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED625BBE6CF00068F69 /* RowSeparator.swift */; };
 		73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED625BBE6CF00068F69 /* RowSeparator.swift */; };
 		73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C54ED725BBE6CF00068F69 /* Namespace.swift */; };
@@ -71,7 +69,6 @@
 		73C54EB025BBE5A100068F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73C54EB125BBE5A100068F69 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		73C54ED325BBE6CF00068F69 /* RowBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowBackground.swift; sourceTree = "<group>"; };
-		73C54ED425BBE6CF00068F69 /* ContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
 		73C54ED625BBE6CF00068F69 /* RowSeparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSeparator.swift; sourceTree = "<group>"; };
 		73C54ED725BBE6CF00068F69 /* Namespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
 		73C54ED825BBE6CF00068F69 /* List1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List1.swift; sourceTree = "<group>"; };
@@ -106,7 +103,6 @@
 				737BE70F25C830EB003B6A3C /* IfModifier.swift */,
 				73A6BB9525CAD1C600B95F3F /* OnChange.swift */,
 				73C54ED725BBE6CF00068F69 /* Namespace.swift */,
-				73C54ED425BBE6CF00068F69 /* ContextMenu.swift */,
 				737BE70425C801ED003B6A3C /* ClickReceiver.swift */,
 				73C54EDD25BBE6CF00068F69 /* Configuration.swift */,
 				737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */,
@@ -300,7 +296,6 @@
 				73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */,
 				73C54EE825BBE6CF00068F69 /* List1.swift in Sources */,
 				73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */,
-				73C54EE025BBE6CF00068F69 /* ContextMenu.swift in Sources */,
 				737BE70525C801ED003B6A3C /* ClickReceiver.swift in Sources */,
 				737BE72225C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */,
 				73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */,
@@ -328,7 +323,6 @@
 				73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */,
 				73C54EE925BBE6CF00068F69 /* List1.swift in Sources */,
 				73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */,
-				73C54EE125BBE6CF00068F69 /* ContextMenu.swift in Sources */,
 				737BE70625C801ED003B6A3C /* ClickReceiver.swift in Sources */,
 				737BE72325C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */,
 				73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */,

@@ -63,6 +63,11 @@ extension EnvironmentValues {
     }
 }
 
+public protocol InitWithSet {
+    associatedtype Element: Hashable
+    init(_: Set<Element>)
+}
+
 extension ColorScheme {
     internal var isLight: Bool {
         switch self {
