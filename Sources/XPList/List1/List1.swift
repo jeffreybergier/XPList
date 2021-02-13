@@ -47,7 +47,7 @@ extension XPL1 {
         @Environment(\.XPL_Configuration) private var config
 
         public var body: some View {
-            ScrollView {
+            __hack_ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(self.data) { item in
                         ZStack(alignment: .bottom) {

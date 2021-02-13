@@ -23,6 +23,8 @@
 		737BE72325C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */; };
 		737BE72925C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
 		737BE72A25C98034003B6A3C /* ClickModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BE72825C98034003B6A3C /* ClickModifier.swift */; };
+		739FE4F225D7FC7A00B48A85 /* HackScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739FE4F125D7FC7A00B48A85 /* HackScrollView.swift */; };
+		739FE4F325D7FC7A00B48A85 /* HackScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739FE4F125D7FC7A00B48A85 /* HackScrollView.swift */; };
 		73A6BB9625CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
 		73A6BB9725CAD1C600B95F3F /* OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6BB9525CAD1C600B95F3F /* OnChange.swift */; };
 		73AFE77C25D17BF0001324AE /* List2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE77325D17BF0001324AE /* List2.swift */; };
@@ -59,6 +61,7 @@
 		737BE71C25C83812003B6A3C /* ClickReceiver_mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_mac.swift; sourceTree = "<group>"; };
 		737BE72125C8392D003B6A3C /* ClickReceiver_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickReceiver_iOS.swift; sourceTree = "<group>"; };
 		737BE72825C98034003B6A3C /* ClickModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickModifier.swift; sourceTree = "<group>"; };
+		739FE4F125D7FC7A00B48A85 /* HackScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackScrollView.swift; sourceTree = "<group>"; };
 		73A6BB9525CAD1C600B95F3F /* OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChange.swift; sourceTree = "<group>"; };
 		73AFE77325D17BF0001324AE /* List2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List2.swift; sourceTree = "<group>"; };
 		73AFE79225D1801F001324AE /* List2Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List2Demo.swift; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				73C54ED825BBE6CF00068F69 /* List1.swift */,
+				739FE4F125D7FC7A00B48A85 /* HackScrollView.swift */,
 				73C54ED925BBE6CF00068F69 /* Accessory.swift */,
 				737BE72825C98034003B6A3C /* ClickModifier.swift */,
 				73C54ED625BBE6CF00068F69 /* RowSeparator.swift */,
@@ -296,6 +300,7 @@
 				73C54EE625BBE6CF00068F69 /* Namespace.swift in Sources */,
 				73C54EE825BBE6CF00068F69 /* List1.swift in Sources */,
 				73C54EE425BBE6CF00068F69 /* RowSeparator.swift in Sources */,
+				739FE4F225D7FC7A00B48A85 /* HackScrollView.swift in Sources */,
 				737BE70525C801ED003B6A3C /* ClickReceiver.swift in Sources */,
 				737BE72225C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */,
 				73C54EF225BBE6CF00068F69 /* Configuration.swift in Sources */,
@@ -323,6 +328,7 @@
 				73C54EE725BBE6CF00068F69 /* Namespace.swift in Sources */,
 				73C54EE925BBE6CF00068F69 /* List1.swift in Sources */,
 				73C54EE525BBE6CF00068F69 /* RowSeparator.swift in Sources */,
+				739FE4F325D7FC7A00B48A85 /* HackScrollView.swift in Sources */,
 				737BE70625C801ED003B6A3C /* ClickReceiver.swift in Sources */,
 				737BE72325C8392D003B6A3C /* ClickReceiver_iOS.swift in Sources */,
 				73C54EF325BBE6CF00068F69 /* Configuration.swift in Sources */,
