@@ -140,7 +140,7 @@ extension ReferenceCollection: Growable {
         self.endIndex -= 1
     }
     func load() {
-        self.endIndex = 10
+        self.endIndex = 20
     }
 }
 
@@ -153,7 +153,7 @@ extension ValueCollection: Growable {
         self.endIndex -= 1
     }
     mutating func load() {
-        self.endIndex = 10
+        self.endIndex = 20
     }
 }
 

@@ -62,6 +62,7 @@ struct XPListExampleApp: App {
                     }
                 }
                 .listStyle(SidebarListStyle())
+                .navigationTitle("XPList")
             }
         }
     }
