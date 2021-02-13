@@ -28,18 +28,24 @@ import SwiftUI
 
 extension XPL1 {
     internal struct Accessory: View {
+        
         @Environment(\.XPL_isSelected) private var isSelected
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_Configuration) private var config
+        
         internal var body: some View {
-            guard self.isEditMode else { return AnyView(EmptyView()) }
-            let image = self.isSelected
-                ? self.config.selectedAccessory
-                : self.config.deselectedAccessory
-            return AnyView(
-                image
-                    .foregroundColor(self.config.accessoryAccent)
-            )
+            self.build()
+                .foregroundColor(self.config.accessoryAccent)
+        }
+        
+        @ViewBuilder private func build() -> some View {
+            if self.isEditMode {
+                self.isSelected
+                    ? self.config.selectedAccessory
+                    : self.config.deselectedAccessory
+            } else {
+                EmptyView()
+            }
         }
     }
 }
