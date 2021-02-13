@@ -32,19 +32,14 @@ extension XPL1 {
         @Environment(\.XPL_isEditMode) private var isEditMode
         @Environment(\.XPL_Configuration) private var config
         internal var body: some View {
+            guard self.isEditMode else { return AnyView(EmptyView()) }
             let image = self.isSelected
                 ? self.config.selectedAccessory
                 : self.config.deselectedAccessory
-            image
-                .foregroundColor(self.config.accessoryAccent)
-                .frame(width: self.width, alignment: .trailing)
-                .opacity(self.opacity)
-        }
-        private var width: CGFloat? {
-            self.isEditMode ? nil : 0
-        }
-        private var opacity: Double {
-            self.isEditMode ? 1 : 0
+            return AnyView(
+                image
+                    .foregroundColor(self.config.accessoryAccent)
+            )
         }
     }
 }
