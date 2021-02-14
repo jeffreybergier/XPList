@@ -26,59 +26,62 @@
 
 import SwiftUI
 
-internal enum Either<A, B> {
+public enum Either<A, B> {
     case a(A), b(B)
 }
 
-internal struct If<A: ViewModifier, B: ViewModifier>: ViewModifier {
+public struct If<A: ViewModifier, B: ViewModifier>: ViewModifier {
     private let value: Either<A, B>?
-    internal init(_ value: Either<A, B>?) {
+    public init(_ value: Either<A, B>?) {
         self.value = value
     }
-    internal init(_ isTrue: Bool, _ yes: A, _ no: B) {
+    public init(_ isTrue: Bool, _ yes: A, _ no: B) {
         self.value = isTrue ? .a(yes) : .b(no)
     }
-    internal func body(content: Content) -> some View {
-        guard let value = self.value else { return AnyView(content) }
-        switch value {
-        case .a(let a):
-            return AnyView(content.modifier(a))
-        case .b(let b):
-            return AnyView(content.modifier(b))
+    @ViewBuilder public func body(content: Content) -> some View {
+        if let value = self.value {
+            switch value {
+            case .a(let a):
+                content.modifier(a)
+            case .b(let b):
+                content.modifier(b)
+            }
+        } else {
+            content
         }
     }
 }
 
 extension If {
-    internal static func mac(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
+    public static func mac(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
         #if os(macOS)
         return If(isTrue, yes, no)
         #else
         return If(nil)
         #endif
     }
-    internal static func mac(_ yes: A) -> If<A, B> where B == Never {
+    public static func mac(_ yes: A) -> If<A, B> where B == Never {
         #if os(macOS)
         return If(.a(yes))
         #else
         return If(nil)
         #endif
     }
-    internal static func iOS(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
+    public static func iOS(and isTrue: Bool, _ yes: A, _ no: B) -> If<A, B> {
         #if os(iOS)
         return If(isTrue, yes, no)
         #else
         return If(nil)
         #endif
     }
-    internal static func iOS(_ yes: A) -> If<A, B> {
+    public static func iOS(_ yes: A) -> If<A, B> where B == Never {
         #if os(iOS)
         return If(.a(yes))
         #else
         return If(nil)
         #endif
     }
-    internal static func some(_ some: A?) -> If<A,B> where B == Never {
+    public static func some(_ some: A?) -> If<A,B> where B == Never {
         guard let some = some else { return If(nil) }
         return If(.a(some))
     }
