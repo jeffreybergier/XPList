@@ -26,7 +26,7 @@
 
 import SwiftUI
 
-internal struct ClickModifier: ViewModifier {
+internal struct ClickModifier1: ViewModifier {
     
     internal typealias Action = () -> Void
     

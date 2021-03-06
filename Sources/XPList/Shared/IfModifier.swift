@@ -74,6 +74,14 @@ extension If {
         return If(nil)
         #endif
     }
+    public static func iOS(and isTrue: Bool, _ yes: A) -> If<A, B> where B == Never {
+        #if os(iOS)
+        guard isTrue else { return If(nil) }
+        return If(.a(yes))
+        #else
+        return If(nil)
+        #endif
+    }
     public static func iOS(_ yes: A) -> If<A, B> where B == Never {
         #if os(iOS)
         return If(.a(yes))

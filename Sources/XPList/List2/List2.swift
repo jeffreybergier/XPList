@@ -52,10 +52,11 @@ extension XPL2 {
             { item in
                 self.content(item)
                     .contentShape(Rectangle())
-                    .modifier(ClickReceiver(clickCount: 2, finish: { self.open(item) }))
+                    .modifier(ClickModifier2(open: { self.open(item) }))
                     .modifier(If.some(self.menuModifier?(self.menu(item))))
                     .environment(\.XPL_isSelected, self.selection.contains(item))
             }
+            .modifier(OnChange(of: \.XPL_isEditMode, action: { _ in self.selection.removeAll() }))
             .modifier(EditMode())
         }
         

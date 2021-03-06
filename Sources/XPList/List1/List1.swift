@@ -60,10 +60,10 @@ extension XPL1 {
                             .padding(self.config.cellPadding)
                         }
                         .modifier(ForegroundColor())
-                        .modifier(ClickModifier(open: { self.open(item) },
-                                                singleSelect: { self.singleSelect(item) },
-                                                commandSelect: { self.commandSelect(item) },
-                                                shiftSelect: { self.shiftSelect(item) }))
+                        .modifier(ClickModifier1(open: { self.open(item) },
+                                                 singleSelect: { self.singleSelect(item) },
+                                                 commandSelect: { self.commandSelect(item) },
+                                                 shiftSelect: { self.shiftSelect(item) }))
                         .modifier(If.some(self.menuModifier?(self.menu(item))))
                         .environment(\.XPL_isSelected, self.selection.contains(item))
                     }
